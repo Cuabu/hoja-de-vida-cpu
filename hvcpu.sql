@@ -56,6 +56,7 @@ CREATE TABLE mantenimientos (
 -- Crear tabla de salas
 CREATE TABLE salas (
   Id int(11) NOT NULL AUTO_INCREMENT,
+  NombreSala varchar(50) DEFAULT NULL,
   EquipoId int(11) DEFAULT NULL,
   VBeamId int(11) DEFAULT NULL,
   Observaciones text DEFAULT NULL,
@@ -82,14 +83,6 @@ CREATE TABLE historial (
   VidaMaquina int(11) DEFAULT NULL,
   PRIMARY KEY (Id),
   FOREIGN KEY (EquipoId) REFERENCES equipos(Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Crear tabla de notificaciones
-CREATE TABLE notificacion (
-  Id int(11) NOT NULL AUTO_INCREMENT,
-  TablaAfectada varchar(50) DEFAULT NULL,
-  DetallesCambios text DEFAULT NULL,
-  PRIMARY KEY (Id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Crear usuario administrador con todos los permisos
