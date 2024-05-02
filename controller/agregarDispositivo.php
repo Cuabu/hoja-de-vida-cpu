@@ -1,19 +1,53 @@
 <?php
-include_once('../model/dispositivoDAO.php'); // Asegúrate de que la ruta y el nombre del archivo sean correctos
+include_once('../model/productoDAO.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
-    $EquipoId = $_POST["EquipoId"];
-    $MarcaSerial = $_POST["MarcaSerial"];
-    $Observaciones = $_POST["Observaciones"];
+    $idProducto = $_POST["idProducto"]; // Identificador único del producto
+    $codigoEquipo = $_POST["CodigoEquipo"];
+    $fechaIngreso = $_POST["FechaIngreso"];
+    $nombreEquipo = $_POST["NombreEquipo"];
+    $responsableEquipo = $_POST["ResponsableEquipo"];
+    $marcaManufactura = $_POST["MarcaManufactura"]; // Corregido aquí
+    $tecladoMarcaModeloSerial = $_POST["TecladoMarcaModeloSerial"];
+    $reguladorVoltajeSerial = $_POST["ReguladorVoltajeSerial"];
+    $monitorMarcaModeloSerial = $_POST["MonitorMarcaModeloSerial"];
+    $mouseMarcaModeloSerial = $_POST["MouseMarcaModeloSerial"];
+    $lectorOpticoMarcaModeloSerial = $_POST["LectorOpticoMarcaModeloSerial"];
+    $cpuModeloSerial = $_POST["CPUModeloSerial"];
+    $discoDuroModeloSerial = $_POST["DiscoDuroModeloSerial"];
+    $macEthernetSerial = $_POST["MacEthernetSerial"];
+    $macWIFISerial = $_POST["MacWIFISerial"];
+    $velocidadHash = $_POST["VelocidadHash"];
+    $descripcionProducto = $_POST["DescripcionProducto"];
+    $historialMantenimientos = $_POST["HistorialMantenimientos"];
 
-    // Agregar el dispositivo si el EquipoId existe
-    $dispositivoDAO = new DispositivoDAO(); // Asegúrate de que el nombre de la clase coincida con la definición en el archivo DispositivoDAO.php
-    if ($dispositivoDAO->agregarDispositivo($EquipoId, $MarcaSerial, $Observaciones)) {
+    $productoDAO = new ProductoDAO();
+
+    if ($productoDAO->modificarProducto(
+        $idProducto,
+        $codigoEquipo,
+        $fechaIngreso,
+        $nombreEquipo,
+        $responsableEquipo,
+        $marcaManufactura,
+        $tecladoMarcaModeloSerial,
+        $reguladorVoltajeSerial,
+        $monitorMarcaModeloSerial,
+        $mouseMarcaModeloSerial,
+        $lectorOpticoMarcaModeloSerial,
+        $cpuModeloSerial,
+        $discoDuroModeloSerial,
+        $macEthernetSerial,
+        $macWIFISerial,
+        $velocidadHash,
+        $descripcionProducto,
+        $historialMantenimientos
+    )) {
         header("Location: ../index.php");
         exit();
     } else {
-        echo "Error al agregar el producto.";
+        echo "Error al modificar el producto.";
     }
 }
 ?>

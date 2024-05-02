@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descripcionProducto,
         $historialMantenimientos
     )) {
-        header("Location: ../index.php");
+        header("Location: ../administrador.php");
         exit();
     } else {
         echo "Error al agregar el producto.";

@@ -1,17 +1,43 @@
 @echo off
-setlocal
 
-rem Simulación de información del mouse y teclado en Batch
-rem Obtener la posición del cursor (simulado)
-set "cursor_x=100"
-set "cursor_y=200"
+echo Informacion del Sistema > info_pc.txt
+echo ========================= >> info_pc.txt
 
-rem Simular detección de tecla (por ejemplo, tecla 'A')
-set "tecla=A"
+echo. >> info_pc.txt
+echo === Informacion del Sistema === >> info_pc.txt
+systeminfo | findstr /C:"Nombre del sistema" /C:"Fabricante del sistema" /C:"Modelo del sistema" /C:"Tipo de sistema" >> info_pc.txt
 
-rem Imprimir la información simulada
-echo Posición del cursor: (%cursor_x%, %cursor_y%)
-echo Tecla presionada: %tecla%
+echo. >> info_pc.txt
+echo === Informacion de la CPU === >> info_pc.txt
+wmic cpu get Name, Manufacturer >> info_pc.txt
 
-rem Finalizar script
-exit /b
+echo. >> info_pc.txt
+echo === Informacion de la Memoria RAM === >> info_pc.txt
+wmic memorychip get Capacity, Manufacturer, Speed >> info_pc.txt
+
+echo. >> info_pc.txt
+echo === Informacion de la Tarjeta Gráfica === >> info_pc.txt
+wmic path win32_videocontroller get Caption, AdapterRAM, DriverVersion >> info_pc.txt
+
+echo. >> info_pc.txt
+echo === Informacion del Disco Duro === >> info_pc.txt
+wmic diskdrive get Model, Manufacturer, Size >> info_pc.txt
+
+echo. >> info_pc.txt
+echo === Informacion de la Red === >> info_pc.txt
+ipconfig /all >> info_pc.txt
+
+echo. >> info_pc.txt
+echo === Informacion del Teclado === >> info_pc.txt
+wmic path win32_keyboard get Description, Manufacturer >> info_pc.txt
+
+echo. >> info_pc.txt
+echo === Informacion del Mouse === >> info_pc.txt
+wmic path win32_pointingdevice get Description, Manufacturer >> info_pc.txt
+
+echo.
+echo Se ha guardado la informacion en el archivo 'info_pc.txt'.
+pause
+
+REM Abrir la página web con la información
+start "" "www.google.com"

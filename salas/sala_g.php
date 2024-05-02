@@ -3,7 +3,7 @@ include('../config/conexion.php');
 
 $conexion = new Conexion();
 $conn = $conexion->conectar();
-$sql = "SELECT * FROM sala_g";
+$sql = "SELECT * FROM salas";
 $query = mysqli_query($conn, $sql);
 
 ?>
@@ -13,7 +13,7 @@ $query = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Salas</title>
+    <title>Lista de Salas</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
@@ -28,7 +28,7 @@ $query = mysqli_query($conn, $sql);
 
 <body>
 
-<img src="../img/custom-logo.png" title="Booked Scheduler - Planificación" alt="Booked Scheduler - Planificación" class="logo">
+<img src="../img/custom-logo.png?2.7.6" title="Booked Scheduler - Planificación" alt="Booked Scheduler - Planificación" class="logo">
 <br>    
 
 <br>
@@ -54,22 +54,30 @@ $query = mysqli_query($conn, $sql);
                 </button>
             </div>
             <div class="modal-body">
-                <form id="salaForm">
-                    <div class="form-group">
-                        <label for="salaSelect">Seleccione la sala:</label>
-                        <select class="form-control" id="salaSelect" name="sala">
-                        <option value="./salas/sala_a.php">Sala A</option>
-                            <option value="./salas/sala_b.php">Sala B</option>
-                            <option value="./salas/sala_c.php">Sala C</option>
-                            <option value="./salas/sala_d.php">Sala D</option>
-                            <option value="./salas/sala_e.php">Sala E</option>
-                            <option value="./salas/sala_f.php">Sala F</option>
-                            <option value="./salas/sala_g.php">Sala G</option>
-                            <option value="./salas/sala_h.php">Sala H</option>
-                        </select>
-                    </div>
-                    <button type="button" class="btn btn-primary" onclick="redirigirSala()">Ir a la sala</button>
-                </form>
+                <<form id="salaForm">
+    <div class="form-group">
+        <label for="salaSelect">Seleccione la sala:</label>
+        <select class="form-control" id="salaSelect" name="sala">
+            <option value="../salas/sala_a.php">Sala A</option>
+            <option value="../salas/sala_b.php">Sala B</option>
+            <option value="../salas/sala_c.php">Sala C</option>
+            <option value="../salas/sala_d.php">Sala D</option>
+            <option value="../salas/sala_e.php">Sala E</option>
+            <option value="../salas/sala_f.php">Sala F</option>
+            <option value="../salas/sala_g.php">Sala G</option>
+            <option value="../salas/sala_h.php">Sala H</option>
+        </select>
+    </div>
+    <button type="button" class="btn btn-primary" onclick="redirigirSala()">Ir a la sala</button>
+</form>
+
+<script>
+    function redirigirSala() {
+        var seleccion = document.getElementById("salaSelect").value;
+        window.location.href = seleccion;
+    }
+</script>
+
             </div>
         </div>
     </div>
@@ -86,8 +94,10 @@ $query = mysqli_query($conn, $sql);
                     </button>
                 </div>
                 <div class="modal-body">
+
                     <!-- Formulario para agregar producto -->
                     <form action="./controller/agregarProductoController.php" method="POST">
+
     <div class="form-group">
         <label for="CodigoEquipo">Código de Equipo:</label>
         <input type="text" class="form-control" id="CodigoEquipo" name="CodigoEquipo" placeholder="Código de Equipo">
@@ -183,27 +193,33 @@ $query = mysqli_query($conn, $sql);
         
 
 <div class="container mt-4">
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Responsable de Sala</th>
-            <th>Observaciones</th> 
-            <th>Capacidad</th>
-
-        </tr>
-    </thead>
-    <tbody>
-        <?php while ($row = mysqli_fetch_array($query)): ?>
-        <tr>
-            <td><?= $row['NombreResponsable'] ?></td>
-            <td><?= $row['Observaciones'] ?></td>
-            <td><?= $row['Capacidad'] ?></td>
-
-            </td>
-        </tr>
-        <?php endwhile; ?>
-    </tbody>
-</table>
+        <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                        <th>Id</th>
+                        <th>Nombre Equipo</th>
+                        <th>Descripcion Producto</th>
+                        <th>Acciones</th> 
+                        </tr>
+                        </thead>
+                    <tbody>
+                <?php while ($row = mysqli_fetch_array($query)): ?>
+            <tr>
+                                <td><?= $row['EquipoId'] ?></td>
+                                <td><?= $row['Observaciones'] ?></td>
+                                <td><?= $row['Capacidad'] ?></td>
+                                <td>
+                                                    
+                                                    <!-- Enlace para eliminar producto -->
+            <a href="controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger">Eliminar</a>
+                </td>
+                </tr>
+  
+                </div>
+                <?php endwhile; ?>
+            </tbody>
+        </table>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -219,4 +235,4 @@ $query = mysqli_query($conn, $sql);
     
 </body>
 </html>
-                                
+                                ss

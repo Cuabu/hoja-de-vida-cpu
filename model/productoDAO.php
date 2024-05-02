@@ -14,6 +14,13 @@ class ProductoDAO {
         return mysqli_query($conn, $sql);
     }
 
+    public function modificarProducto($idProducto, $codigoEquipo, $fechaIngreso, $NombreEquipo, $responsableEquipo, $MarcaManuFactura, $tecladoMarcaModeloSerial, $reguladorVoltajeSerial, $monitorMarcaModeloSerial, $mouseMarcaModeloSerial, $lectorOpticoMarcaModeloSerial, $cpuModeloSerial, $discoDuroModeloSerial, $macEthernetSerial, $macWIFISerial, $velocidadHash, $descripcionProducto, $historialMantenimientos) {
+        $conn = $this->conexion->conectar();
+        $sql = "UPDATE equipos SET CodigoEquipo='$codigoEquipo', FechaIngreso='$fechaIngreso', nombreEquipo='$NombreEquipo', ResponsableEquipo='$responsableEquipo', MarcaManuFactura='$MarcaManuFactura', TecladoMarcaModeloSerial='$tecladoMarcaModeloSerial', ReguladorVoltajeSerial='$reguladorVoltajeSerial', MonitorMarcaModeloSerial='$monitorMarcaModeloSerial', MouseMarcaModeloSerial='$mouseMarcaModeloSerial', LectorOpticoMarcaModeloSerial='$lectorOpticoMarcaModeloSerial', CPUModeloSerial='$cpuModeloSerial', DiscoDuroModeloSerial='$discoDuroModeloSerial', MacEthernetSerial='$macEthernetSerial', MacWIFISerial='$macWIFISerial', VelocidadHash='$velocidadHash', DescripcionProducto='$descripcionProducto', HistorialMantenimientos='$historialMantenimientos' WHERE idProducto=$idProducto";
+        return mysqli_query($conn, $sql);
+    }
+    
+
     public function obtenerProductos() {
         $conn = $this->conexion->conectar();
         $sql = "SELECT * FROM equipos";

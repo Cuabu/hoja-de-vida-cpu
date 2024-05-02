@@ -1,9 +1,9 @@
 <?php
-include('../config/conexion.php');
+include('./config/conexion.php');
 
 $conexion = new Conexion();
 $conn = $conexion->conectar();
-$sql = "SELECT * FROM salas";
+$sql = "SELECT * FROM equipos";
 $query = mysqli_query($conn, $sql);
 
 ?>
@@ -13,78 +13,107 @@ $query = mysqli_query($conn, $sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Salas</title>
+    <title>lista de Computadores</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <style>
-        body {
-            background-image: url('./img/kawi.j'); /* Reemplaza 'ruta/de/la/imagen.jpg' con la URL o la ruta de tu imagen de fondo */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-    </style>
+    body {
+        background-image: url('./img/');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+</style>
 
 <body>
 
-<img src="../img/custom-logo.png?2.7.6" title="Booked Scheduler - Planificación" alt="Booked Scheduler - Planificación" class="logo">
-<br>    
+<img src="img/custom-logo.png?2.7.6" title="Booked Scheduler - Planificación" alt="Booked Scheduler - Planificación" class="logo">
+<br>
 
 <br>
-    
-    <div class="container">
-        <!-- Botón para agregar producto -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarModal">
-            Registrar Computador
-        </button>
-    <!-- Botón para abrir la ventana modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionarSalaModal">
-    Seleccionar Sala
-</button>
 
-<!-- Ventana modal -->
-<div class="modal fade" id="seleccionarSalaModal" tabindex="-1" role="dialog" aria-labelledby="seleccionarSalaModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="seleccionarSalaModalLabel">Seleccionar Sala</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <<form id="salaForm">
-    <div class="form-group">
-        <label for="salaSelect">Seleccione la sala:</label>
-        <select class="form-control" id="salaSelect" name="sala">
-            <option value="../salas/sala_a.php">Sala A</option>
-            <option value="../salas/sala_b.php">Sala B</option>
-            <option value="../salas/sala_c.php">Sala C</option>
-            <option value="../salas/sala_d.php">Sala D</option>
-            <option value="../salas/sala_e.php">Sala E</option>
-            <option value="../salas/sala_f.php">Sala F</option>
-            <option value="../salas/sala_g.php">Sala G</option>
-            <option value="../salas/sala_h.php">Sala H</option>
-        </select>
-    </div>
-    <button type="button" class="btn btn-primary" onclick="redirigirSala()">Ir a la sala</button>
-</form>
+<div class="container">
+    <!-- Botón para agregar producto -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarModal">
+        Registrar Computador
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarDispositivo">
+        Registrar Dispositivo
+    </button>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionarSalaModal">
+        Seleccionar Sala
+    </button>
 
-<script>
-    function redirigirSala() {
-        var seleccion = document.getElementById("salaSelect").value;
-        window.location.href = seleccion;
-    }
-</script>
+    <!-- Modal para agregar dispositivo -->
+    <div class="modal fade" id="agregarDispositivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalDispositivo">Agregar Dispositivos</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario para agregar dispositivo -->
+                    <form action="./controller/agregarDispositivo.php" method="POST">
+                        <div class="form-group">
+                            <label for="EquipoId">Código de Equipo:</label>
+                            <input type="text" class="form-control" id="EquipoId" name="EquipoId" placeholder="Código de Equipo">
+                        </div>
 
+                        <div class="form-group">
+                            <label for="MarcaSerial">Nombre del Equipo:</label>
+                            <input type="text" class="form-control" id="MarcaSerial" name="MarcaSerial" placeholder="Nombre de la Computadora">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Observaciones">Responsable de Equipo:</label>
+                            <input type="text" class="form-control" id="Observaciones" name="Observaciones" placeholder="Responsable de Equipo">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Agregar Dispositivo</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <!-- Modal para agregar producto -->
-    <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <!-- Modal para seleccionar sala -->
+    <div class="modal fade" id="seleccionarSalaModal" tabindex="-1" role="dialog" aria-labelledby="seleccionarSalaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="seleccionarSalaModalLabel">Seleccionar Sala</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="salaForm">
+                        <div class="form-group">
+                            <label for="salaSelect">Seleccione la sala:</label>
+                            <select class="form-control" id="salaSelect" name="sala">
+                                <option value="./salas/sala_a.php">Sala A</option>
+                                <option value="./salas/sala_b.php">Sala B</option>
+                                <option value="./salas/sala_c.php">Sala C</option>
+                                <option value="./salas/sala_d.php">Sala D</option>
+                                <option value="./salas/sala_e.php">Sala E</option>
+                                <option value="./salas/sala_f.php">Sala F</option>
+                                <option value="./salas/sala_g.php">Sala G</option>
+                                <option value="./salas/sala_h.php">Sala H</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="redirigirSala()">Ir a la sala</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+      <!-- Modal para agregar producto -->
+      <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -181,49 +210,42 @@ $query = mysqli_query($conn, $sql);
     <textarea class="form-control" id="HistorialMantenimientos" name="HistorialMantenimientos" placeholder="Descripción Generalizada" rows="4"></textarea>
     </div>
 
-    <button type="submit" class="btn btn-primary">Agregar Equipo</button>      
-            
-
-        </div>
-        </div>           
-        </div>
-        </div>
-
-
-        
-
-<div class="container mt-4">
-        <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                        <th>Id</th>
-                        <th>Nombre Equipo</th>
-                        <th>Descripcion Producto</th>
-                        <th>Acciones</th> 
-                        </tr>
-                        </thead>
-                    <tbody>
-                <?php while ($row = mysqli_fetch_array($query)): ?>
-            <tr>
-                                <td><?= $row['EquipoId'] ?></td>
-                                <td><?= $row['Observaciones'] ?></td>
-                                <td><?= $row['Capacidad'] ?></td>
-                                <td>
-                                                    
-                                                    <!-- Enlace para eliminar producto -->
-            <a href="controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger">Eliminar</a>
-                </td>
-                </tr>
-  
+    <button type="submit" class="btn btn-primary">Agregar Equipo</button> 
+                    </form>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla de equipos -->
+    <div class="container mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre Equipo</th>
+                    <th>Descripcion Producto</th>
+             
+                </tr>
+            </thead>
+            <tbody>
+                <?php while ($row = mysqli_fetch_array($query)): ?>
+                    <tr>
+                        <td><?= $row['Id'] ?></td>
+                        <td><?= $row['NombreEquipo'] ?></td>
+                        <td><?= $row['DescripcionProducto'] ?></td>
+                     
+                    </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
     function redirigirSala() {
         var form = document.getElementById('salaForm');
         var selectedOption = form.elements['sala'].value;
@@ -232,7 +254,6 @@ $query = mysqli_query($conn, $sql);
         }
     }
 </script>
-    
+
 </body>
 </html>
-                                
