@@ -46,8 +46,102 @@ $query = mysqli_query($conn, $sql);
     </button>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generarExcel">
-        Generar Documento Excel
+        Documento Excel Equipos
     </button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consultarEquipoSala">
+Documento Excel Salas
+</button>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consultarEquipoId">
+    Consultar Equipo por ID
+</button>
+
+
+
+<!-- Modal para consultar equipo por Sala -->
+<div class="modal fade" id="consultarEquipoSala" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Consultar Equipo por Sala</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para consultar producto por ID -->
+                <form action="./controller/consultaEquipoSalas.php" method="POST">
+                    <div class="form-group">
+                        <label for="CodigoEquipoSala">Nombre de Sala:</label>
+                        <input type="text" class="form-control" id="CodigoEquipoSala" name="CodigoEquipoSala" placeholder="Código de Equipo">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Consultar Equipo de Sala</button>
+                </form>
+
+                <!-- Resultados de la consulta -->
+                <div id="resultadosConsulta">
+                    <!-- Aquí se mostrarán los resultados de la consulta -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para consultar equipo por ID -->
+<div class="modal fade" id="consultarEquipoId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Consultar Equipo por ID Serial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Formulario para consultar producto por ID -->
+                <form action="./controller/consultaEquiposId.php" method="POST">
+                    <div class="form-group">
+                        <label for="CodigoEquipo">Código de Equipo:</label>
+                        <input type="text" class="form-control" id="CodigoEquipo" name="CodigoEquipo" placeholder="Código de Equipo">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Consultar Equipo</button>
+                </form>
+
+                <!-- Resultados de la consulta -->
+                <div id="resultadosConsulta">
+                    <!-- Aquí se mostrarán los resultados de la consulta -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    <!-- Modal para descargar base de datos de equipos -->
+    <div class="modal fade" id="generarExcel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="generarExcel">Descargar Registro de Computadores</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Formulario para consultar producto -->
+                    <form action="./controller/consultarEquipo.php" method="POST">
+
+    <button type="submit" class="btn btn-primary">Descargar Registros Equipos</button>
+
+                 </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Modal para modificar equipo -->
 <form action="./controller/actualizarController.php" method="POST">
