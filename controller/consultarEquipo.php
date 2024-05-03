@@ -1,11 +1,12 @@
 <?php
 
+// Variables de conexión a la base de datos
 $servername = "localhost";
 $username = "root";
 $password = "114412345@";
 $database = "hvcpu";
 
-// Crear conexión
+// Crear conexión a la base de datos
 $conn = new mysqli($servername, $username, $password, $database);
 
 // Verificar conexión
@@ -14,7 +15,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para obtener los datos de la tabla equipos
-$sql = "SELECT Id, CodigoEquipo, FechaIngreso, NombreEquipo, ResponsableEquipo, MarcaManufactura, TecladoMarcaModeloSerial, ReguladorVoltajeSerial, MonitorMarcaModeloSerial, MouseMarcaModeloSerial, LectorOpticoMarcaModeloSerial, CPUModeloSerial, DiscoDuroModeloSerial, MacEthernetSerial, MacWIFISerial, VelocidadHash, DescripcionProducto, HistorialMantenimientos FROM equipos";
+$sql = "SELECT Id, CodigoEquipo, FechaIngreso, NombreEquipo, ResponsableEquipo, MarcaManufactura, TecladoMarcaModeloSerial, ReguladorVoltajeSerial, MonitorMarcaModeloSerial, MouseMarcaModeloSerial, CPUModeloSerial, DiscoDuroModeloSerial, MacEthernetSerial, MacWIFISerial, VelocidadHash, DescripcionProducto, HistorialMantenimientos FROM equipos";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -24,6 +25,7 @@ if ($result->num_rows > 0) {
     header("Content-Type: application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename=\"$filename\"");
 
+    // Comienza la tabla en HTML
     echo "<table style='border-collapse: collapse; width: 100%;'>";
     echo "<thead>";
     echo "<tr style='background-color: #f2f2f2;'>";
@@ -37,7 +39,6 @@ if ($result->num_rows > 0) {
     echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Marca o Serial del Regulador</th>";
     echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Marca o Serial del Monitor</th>";
     echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Marca o Serial del Mouse</th>";
-    echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Marca o Serial de Unidad DVD</th>";
     echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Marca o Serial de Unidad Procesamiento</th>";
     echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Marca o Serial de Unidad SSD</th>";
     echo "<th style='border: 1px solid #dddddd; padding: 8px;'>Características de Dirección Mac Eth0</th>";
@@ -49,6 +50,7 @@ if ($result->num_rows > 0) {
     echo "</thead>";
     echo "<tbody>";
 
+    // Mostrar datos de la tabla equipos en la tabla HTML
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['Id']}</td>";
@@ -61,7 +63,6 @@ if ($result->num_rows > 0) {
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['ReguladorVoltajeSerial']}</td>";
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['MonitorMarcaModeloSerial']}</td>";
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['MouseMarcaModeloSerial']}</td>";
-        echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['LectorOpticoMarcaModeloSerial']}</td>";
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['CPUModeloSerial']}</td>";
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['DiscoDuroModeloSerial']}</td>";
         echo "<td style='border: 1px solid #dddddd; padding: 8px;'>{$row['MacEthernetSerial']}</td>";
@@ -76,7 +77,7 @@ if ($result->num_rows > 0) {
     echo "<tfoot>";
     echo "<tr>";
     echo "<td colspan='17' style='border: 1px solid #dddddd; padding: 8px; text-align: right;'><strong>Total General</strong></td>";
-    echo "<td style='border: 1px solid #dddddd; padding: 8px;'>$totalGeneral</td>";
+    echo "<td style='border: 1px solid #dddddd; padding: 8px;'>$totalGeneral</td>"; // Aquí se necesita definir $totalGeneral
     echo "</tr>";
     echo "</tfoot>";
     echo "</table>";
@@ -84,5 +85,6 @@ if ($result->num_rows > 0) {
     echo "No se encontraron resultados.";
 }
 
+// Cerrar la conexión a la base de datos
 $conn->close();
 ?>

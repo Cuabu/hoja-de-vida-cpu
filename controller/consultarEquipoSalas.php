@@ -1,53 +1,47 @@
 <?php
-// Verificar si se ha enviado el formulario y el ID del equipo está presente
+// Verificar si se ha enviado el formulario y el ID de la sala está presente
 if (isset($_POST['CodigoEquipoSala']) && !empty($_POST['CodigoEquipoSala'])) {
-    // Obtener el ID del equipo desde el formulario
-    $CodigoEquipoSala = $_POST['CodigoEquipoSala'];
+    // Obtener el código de la sala desde el formulario
+    $CodigoSala = $_POST['CodigoEquipoSala'];
 
-    // Conectar a la base de datos (reemplaza los valores según tu configuración)
-    $servername = "localhost";
-    $username = "root";
-    $password = "114412345@";
-    $dbname = "hvcpu";
+    // Incluir el archivo de conexión
+    include('./config/conexion.php');
 
-    // Crear conexión
-    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Conectar a la base de datos
+    $conexion = new Conexion();
+    $conn = $conexion->conectar();
 
-    // Verificar la conexión
-    if ($conn->connect_error) {
-        die("Error de conexión: " . $conn->connect_error);
-    }
-
-    // Consulta SQL para obtener los datos del equipo por ID
-    $sql = "SELECT * FROM salas WHERE EquipoId = '$CodigoEquipoSala'";
+    // Consulta SQL para obtener los equipos de la sala seleccionada
+    $sql = "SELECT * FROM equipos WHERE CodigoSala = '$CodigoSala'";
 
     // Ejecutar la consulta
-    $result = $conn->query($sql);
+    $query = mysqli_query($conn, $sql);
 
-    if ($result->num_rows > 0) {
-        // Mostrar los datos del equipo
+    // Verificar si se encontraron resultados
+    if (mysqli_num_rows($query) > 0) {
+        // Mostrar los datos de los equipos
         echo "<table>";
-        echo "<tr><th>ID</th><th>Nombre de Sala</th><th>EquipoId</th><th>VBeamId</th><th>Observaciones</th><th>Capacidad</th><th>VelocidadHash</th></tr>";
+        echo "<tr><th>ID</th><th>Nombre Equipo</th><th>Descripcion Producto</th><th>Acciones</th></tr>";
 
-        while ($row = $result->fetch_assoc()) {
+        while ($row = mysqli_fetch_array($query)) {
             echo "<tr>";
-            echo "<td>".$row["Id"]."</td>";
-            echo "<td>".$row["NombreSala"]."</td>";
-            echo "<td>".$row["EquipoId"]."</td>";
-            echo "<td>".$row["VBeamId"]."</td>";
-            echo "<td>".$row["Observaciones"]."</td>";
-            echo "<td>".$row["Capacidad"]."</td>";
-            echo "<td>".$row["VelocidadHash"]."</td>";
+            echo "<td>".$row['Id']."</td>";
+            echo "<td>".$row['NombreEquipo']."</td>";
+            echo "<td>".$row['DescripcionProducto']."</td>";
+            echo "<td>";
+            // Enlace para eliminar equipo
+            echo "<a href='./controller/eliminarProductoController.php?id=".$row['Id']."' class='btn btn-danger'>Eliminar</a>";
+            echo "</td>";
             echo "</tr>";
         }
         echo "</table>";
     } else {
-        echo "No se encontraron resultados para el equipo con ID: $CodigoEquipoSala";
+        echo "No se encontraron equipos para la sala con código: $CodigoSala";
     }
 
     // Cerrar la conexión
-    $conn->close();
+    mysqli_close($conn);
 } else {
-    echo "ID del equipo no especificado.";
+    echo "Código de sala no especificado.";
 }
 ?>
