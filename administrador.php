@@ -23,12 +23,17 @@ $query = mysqli_query($conn, $sql);
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
-    }
+
+        padding-top: 50px;
+        
+        .container 
+            margin-top: 20px;
+        }
 </style>
 
 <body>
 
-<img src="./img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación" class="logo">
+<img src="../hoja de vida cpu/img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
 <br>
 
 <br>
@@ -41,56 +46,58 @@ $query = mysqli_query($conn, $sql);
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarDispositivo">
         Modificar Equipo
     </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionarSalaModal">
-        Seleccionar Sala
-    </button>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generarExcel">
         Documento Excel Equipos
     </button>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consultarEquipoSala">
-Documento Excel Salas
-</button>
+        Ver Salas
+    </button>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consultarEquipoId">
-    Consultar Equipo por ID
-</button>
+        Consultar Equipo por ID
+    </button>
 
 
-<!-- Modal para consultar sala descargnadop el excel-->
-<div class="modal fade" id="consultarEquipoSala" tabindex="-1" role="dialog" aria-labelledby="consultarEquipoSala" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="consultarEquipoSala">Seleccionar Sala</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="salaForm">
-                        <div class="form-group">
-                            <label for="salaSelect">Generar Documento de la Sala:</label>
-                            <select class="form-control" id="salaSelect" name="sala">
-                                <option value="./salas/sala_a.php">Sala A</option>
-                                <option value="./salas/sala_b.php">Sala B</option>
-                                <option value="./salas/sala_c.php">Sala C</option>
-                                <option value="./salas/sala_d.php">Sala D</option>
-                                <option value="./salas/sala_e.php">Sala E</option>
-                                <option value="./salas/sala_f.php">Sala F</option>
-                                <option value="./salas/sala_g.php">Sala G</option>
-                                <option value="./salas/sala_h.php">Sala H</option>
-                            </select>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="redirigirSala()">Descargar Excel de Sala</button>
-                    </form>
-                </div>
+<!-- Modal para consultar sala descargando el excel -->
+<div class="modal fade" id="consultarEquipoSala" tabindex="-1" role="dialog" aria-labelledby="consultarEquipoSalaLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consultarEquipoSalaLabel">Seleccionar Sala</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="salaForm">
+                    <div class="form-group">
+                        <label for="salaSelect">Consultar la Sala:</label>
+                        <select class="form-control" id="salaSelect" name="sala">
+                            <option value="sala a">Sala A</option>
+                            <option value="sala b">Sala B</option>
+                            <option value="sala c">Sala C</option>
+                            <option value="sala d">Sala D</option>
+                            <option value="sala e">Sala E</option>
+                            <option value="sala f">Sala F</option>
+                            <option value="sala g">Sala G</option>
+                            <option value="sala h">Sala H</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="descargarExcelSala()">Ir a Sala</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
- 
+<script>
+    function descargarExcelSala() {
+        var nombreSala = document.getElementById("salaSelect").value;
+        window.location.href = "../hoja de vida cpu/controller/consultarEquipoSalas.php?NombreSala=" + nombreSala;
+    }
+</script>
 
 <!-- Modal para consultar equipo por ID -->
 <div class="modal fade" id="consultarEquipoId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -257,41 +264,7 @@ Documento Excel Salas
 </div>
 </form>
 
-    
-
-
-    <!-- Modal para seleccionar sala -->
-    <div class="modal fade" id="seleccionarSalaModal" tabindex="-1" role="dialog" aria-labelledby="seleccionarSalaModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="seleccionarSalaModalLabel">Seleccionar Sala</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="salaForm">
-                        <div class="form-group">
-                            <label for="salaSelect">Seleccione la sala:</label>
-                            <select class="form-control" id="salaSelect" name="sala">
-                                <option value="./salas/sala_a.php">Sala A</option>
-                                <option value="./salas/sala_b.php">Sala B</option>
-                                <option value="./salas/sala_c.php">Sala C</option>
-                                <option value="./salas/sala_d.php">Sala D</option>
-                                <option value="./salas/sala_e.php">Sala E</option>
-                                <option value="./salas/sala_f.php">Sala F</option>
-                                <option value="./salas/sala_g.php">Sala G</option>
-                                <option value="./salas/sala_h.php">Sala H</option>
-                            </select>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="redirigirSala()">Ir a la sala</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
+ 
       <!-- Modal para agregar producto -->
 <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

@@ -16,6 +16,8 @@
     </style>
 </head>
 <body>
+<img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
+
     <?php
     // Verificar si se ha enviado el formulario y el ID del equipo está presente
     if (isset($_POST['CodigoEquipo']) && !empty($_POST['CodigoEquipo'])) {
