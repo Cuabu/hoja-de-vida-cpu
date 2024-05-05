@@ -18,32 +18,58 @@ $query = mysqli_query($conn, $sql);
 </head>
 
 <style>
-    body {
-        background-image: url('./img/');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }
+        header {
+            text-align: center; /* Centrar contenido dentro del header */
+        }
+        header img {
+            display: inline-block; /* Alinear la imagen como bloque en línea */
+        
+
+        padding-top: 10px;
+        margin-top: 20px;
+        }
+    </style>
+
 </style>
 
+<header>
+        <img src="../hoja de vida cpu/img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
+        <!-- Contenido adicional del encabezado si es necesario -->
+    </header>
+<br>
 <body>
-
-<img src="img/custom-logo.png?2.7.6" title="Booked Scheduler - Planificación" alt="Booked Scheduler - Planificación" class="logo">
-<br>
-
-<br>
-
 <div class="container">
-    <!-- Botón para agregar producto -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarModal">
-        Registrar Computador
-    </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarDispositivo">
-        Registrar Dispositivo
-    </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#seleccionarSalaModal">
-        Seleccionar Sala
-    </button>
+    <div class="row">
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#agregarModal">
+                Registrar Computador
+            </button>
+        </div>
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modificarDispositivo">
+                Modificar Equipo
+            </button>
+        </div>
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#generarExcel">
+                Documento Excel Equipos
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
+                Ver Salas
+            </button>
+        </div>
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoId">
+                Consultar Equipo por ID
+            </button>
+        </div>
+    </div>
+</div>
+
 
     <!-- Modal para agregar dispositivo -->
     <div class="modal fade" id="agregarDispositivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

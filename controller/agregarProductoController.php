@@ -12,7 +12,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $reguladorVoltajeSerial = $_POST["ReguladorVoltajeSerial"];
     $monitorMarcaModeloSerial = $_POST["MonitorMarcaModeloSerial"];
     $mouseMarcaModeloSerial = $_POST["MouseMarcaModeloSerial"];
-    $lectorOpticoMarcaModeloSerial = $_POST["LectorOpticoMarcaModeloSerial"];
     $cpuModeloSerial = $_POST["CPUModeloSerial"];
     $discoDuroModeloSerial = $_POST["DiscoDuroModeloSerial"];
     $macEthernetSerial = $_POST["MacEthernetSerial"];
@@ -33,7 +32,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $reguladorVoltajeSerial,
         $monitorMarcaModeloSerial,
         $mouseMarcaModeloSerial,
-        $lectorOpticoMarcaModeloSerial,
         $cpuModeloSerial,
         $discoDuroModeloSerial,
         $macEthernetSerial,

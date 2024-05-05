@@ -9,8 +9,10 @@ class Conexion {
         $pass = "114412345@";
         $bd = "hvcpu";
 
+        // Crear conexión
         $this->conexion = new mysqli($host, $user, $pass, $bd);
 
+        // Verificar la conexión
         if ($this->conexion->connect_error) {
             die("Error al conectar a la base de datos: " . $this->conexion->connect_error);
         }

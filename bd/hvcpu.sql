@@ -59,14 +59,12 @@ CREATE TABLE mantenimientos (
 -- Crear tabla de salas
 CREATE TABLE salas (
   Id int(11) NOT NULL AUTO_INCREMENT,
-  
   EquipoId int(11) DEFAULT NULL,
   VBeamId int(11) DEFAULT NULL,
   Observaciones text DEFAULT NULL,
   Capacidad int(11) DEFAULT NULL,
   PRIMARY KEY (Id),
   FOREIGN KEY (EquipoId) REFERENCES equipos(Id),
-  FOREIGN KEY (VBeamId) REFERENCES vbeam(Id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Crear tabla de dispositivos externos conectados
@@ -77,7 +75,20 @@ CREATE TABLE dispext (
   PRIMARY KEY (Id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE administrador (
+  Id int(11) NOT NULL AUTO_INCREMENT,
+  NombreAdmin varchar(20) DEFAULT NULL,
+  PasswdAdmin varchar(20) DEFAULT NULL,
+  PRIMARY KEY (Id)
+);
 
+CREATE TABLE usuario (
+  Id int(10) NOT NULL AUTO_INCREMENT,
+  NombreUsuario varchar(20) DEFAULT NULL,
+  PasswdUsuario varchar(20) DEFAULT NULL,
+  emailUsuario varchar(20) DEFAULT NULL,
+  PRIMARY KEY (Id)
+);
 
 -- Crear usuario administrador con todos los permisos
 CREATE USER 'administrador'@'localhost' IDENTIFIED BY 'contraseña';

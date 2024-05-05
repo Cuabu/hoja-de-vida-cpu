@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalles de la Sala</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        /* Estilos adicionales */
-        body {
-            padding-top: 50px;
+    <title>lista de Computadores</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<style>
+        header {
+            text-align: center; /* Centrar contenido dentro del header */
         }
-        .container {
-            margin-top: 20px;
+        header img {
+            display: inline-block; /* Alinear la imagen como bloque en línea */
+        
+
+        padding-top: 10px;
+        margin-top: 20px;
         }
     </style>
-</head>
-<body>
-<img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
 
+</style>
+
+<header>
+        <img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
+        <!-- Contenido adicional del encabezado si es necesario -->
+    </header>
+<br>
+<body>
     <?php
     // Verificar si se ha enviado el formulario y el nombre de la sala está presente
     if (isset($_GET['NombreSala']) && !empty($_GET['NombreSala'])) {

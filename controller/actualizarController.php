@@ -2,7 +2,7 @@
 include_once('../model/productoDAO.php');
 
 
-public function modificarProducto($idProducto, $codigoEquipo, $fechaIngreso, $NombreEquipo, $responsableEquipo, $MarcaManuFactura, $tecladoMarcaModeloSerial, $reguladorVoltajeSerial, $monitorMarcaModeloSerial, $mouseMarcaModeloSerial, $lectorOpticoMarcaModeloSerial, $cpuModeloSerial, $discoDuroModeloSerial, $macEthernetSerial, $macWIFISerial, $velocidadHash, $descripcionProducto, $historialMantenimientos) {
+public function modificarProducto($idProducto, $codigoEquipo, $fechaIngreso, $NombreEquipo, $responsableEquipo, $MarcaManuFactura, $tecladoMarcaModeloSerial, $reguladorVoltajeSerial, $monitorMarcaModeloSerial, $mouseMarcaModeloSerial, $cpuModeloSerial, $discoDuroModeloSerial, $macEthernetSerial, $macWIFISerial, $velocidadHash, $descripcionProducto, $historialMantenimientos) {
     $conn = $this->conexion->conectar();
 
     if (!$conn) {
@@ -19,7 +19,6 @@ public function modificarProducto($idProducto, $codigoEquipo, $fechaIngreso, $No
     $reguladorVoltajeSerial = mysqli_real_escape_string($conn, $reguladorVoltajeSerial);
     $monitorMarcaModeloSerial = mysqli_real_escape_string($conn, $monitorMarcaModeloSerial);
     $mouseMarcaModeloSerial = mysqli_real_escape_string($conn, $mouseMarcaModeloSerial);
-    $lectorOpticoMarcaModeloSerial = mysqli_real_escape_string($conn, $lectorOpticoMarcaModeloSerial);
     $cpuModeloSerial = mysqli_real_escape_string($conn, $cpuModeloSerial);
     $discoDuroModeloSerial = mysqli_real_escape_string($conn, $discoDuroModeloSerial);
     $macEthernetSerial = mysqli_real_escape_string($conn, $macEthernetSerial);
@@ -39,7 +38,6 @@ public function modificarProducto($idProducto, $codigoEquipo, $fechaIngreso, $No
         ReguladorVoltajeSerial='$reguladorVoltajeSerial',
         MonitorMarcaModeloSerial='$monitorMarcaModeloSerial',
         MouseMarcaModeloSerial='$mouseMarcaModeloSerial',
-        LectorOpticoMarcaModeloSerial='$lectorOpticoMarcaModeloSerial',
         CPUModeloSerial='$cpuModeloSerial',
         DiscoDuroModeloSerial='$discoDuroModeloSerial',
         MacEthernetSerial='$macEthernetSerial',

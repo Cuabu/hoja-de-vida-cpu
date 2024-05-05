@@ -18,46 +18,59 @@ $query = mysqli_query($conn, $sql);
 </head>
 
 <style>
-    body {
-        background-image: url('./img/');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-
-        padding-top: 50px;
-        
-        .container 
-            margin-top: 20px;
+        header {
+            text-align: center; /* Centrar contenido dentro del header */
         }
+        header img {
+            display: inline-block; /* Alinear la imagen como bloque en línea */
+        
+
+        padding-top: 10px;
+        margin-top: 20px;
+        }
+    </style>
+
 </style>
 
+<header>
+        <img src="../hoja de vida cpu/img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
+        <!-- Contenido adicional del encabezado si es necesario -->
+    </header>
+<br>
 <body>
 
-<img src="../hoja de vida cpu/img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
-<br>
-
-<br>
 
 <div class="container">
-    <!-- Botón para agregar producto -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#agregarModal">
-        Registrar Computador
-    </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modificarDispositivo">
-        Modificar Equipo
-    </button>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#generarExcel">
-        Documento Excel Equipos
-    </button>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consultarEquipoSala">
-        Ver Salas
-    </button>
-
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#consultarEquipoId">
-        Consultar Equipo por ID
-    </button>
+    <div class="row">
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#agregarModal">
+                Registrar Computador
+            </button>
+        </div>
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modificarDispositivo">
+                Modificar Equipo
+            </button>
+        </div>
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#generarExcel">
+                Documento Excel Equipos
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
+                Ver Salas
+            </button>
+        </div>
+        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoId">
+                Consultar Equipo por Codigo
+            </button>
+        </div>
+    </div>
+</div>
 
 
 <!-- Modal para consultar sala descargando el excel -->
@@ -104,7 +117,7 @@ $query = mysqli_query($conn, $sql);
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Consultar Equipo por ID Serial</h5>
+                <h5 class="modal-title">Consultar Equipo por Codigo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -217,11 +230,6 @@ $query = mysqli_query($conn, $sql);
                 </div>
 
                 <div class="form-group">
-                    <label for="LectorOpticoMarcaModeloSerial">Marca o Serial de Unidad DVD:</label>
-                    <input type="text" class="form-control" id="LectorOpticoMarcaModeloSerial" name="LectorOpticoMarcaModeloSerial" placeholder="Numero de Serie de DVD">
-                </div>
-
-                <div class="form-group">
                     <label for="CPUModeloSerial">Marca o Serial de Unidad Procesamiento:</label>
                     <input type="text" class="form-control" id="CPUModeloSerial" name="CPUModeloSerial" placeholder="Numero de Serie Procesador">
                 </div>
@@ -279,90 +287,86 @@ $query = mysqli_query($conn, $sql);
                 <!-- Formulario para agregar producto -->
                 <form action="./controller/agregarProductoController.php" method="POST">
 
-                    <div class="form-group">
-                        <label for="CodigoEquipo">Código de Equipo:</label>
-                        <input type="text" class="form-control" id="CodigoEquipo" name="CodigoEquipo" placeholder="Código de Equipo">
-                    </div>
+                <div class="form-group">
+    <label for="CodigoEquipo">Código de Equipo:</label>
+    <input type="text" class="form-control" id="CodigoEquipo" name="CodigoEquipo" placeholder="Código de Equipo">
+</div>
 
-                    <div class="form-group">
-                        <label for="FechaIngreso">Fecha de Ingreso:</label>
-                        <input type="date" class="form-control" id="FechaIngreso" name="FechaIngreso" value="<?php echo date('Y-m-d'); ?>">
-                    </div>
+            <div class="form-group">
+                <label for="FechaIngreso">Fecha de Ingreso:</label>
+                <input type="date" class="form-control" id="FechaIngreso" name="FechaIngreso" value="<?php echo date('Y-m-d'); ?>">
+            </div>
 
-                    <div class="form-group">
-                        <label for="NombreEquipo">Nombre del Equipo:</label>
-                        <input type="text" class="form-control" id="NombreEquipo" name="NombreEquipo" placeholder="Nombre de la Computadora">
-                    </div>
+            <div class="form-group">
+                <label for="NombreEquipo">Nombre del Equipo:</label>
+                <input type="text" class="form-control" id="NombreEquipo" name="NombreEquipo" placeholder="Nombre de la Computadora">
+            </div>
 
-                    <div class="form-group">
-                        <label for="ResponsableEquipo">Responsable de Equipo:</label>
-                        <input type="text" class="form-control" id="ResponsableEquipo" name="ResponsableEquipo" placeholder="Responsable de Equipo">
-                    </div>
+            <div class="form-group">
+                <label for="ResponsableEquipo">Responsable de Equipo:</label>
+                <input type="text" class="form-control" id="ResponsableEquipo" name="ResponsableEquipo" placeholder="Responsable de Equipo">
+            </div>
 
-                    <div class="form-group">
-                        <label for="MarcaManuFactura">Marca de la Manufactura:</label>
-                        <input type="text" class="form-control" id="MarcaManuFactura" name="MarcaManufactura" placeholder="Manufactura de Producto">
-                    </div>
+            <div class="form-group">
+                <label for="MarcaManufactura">Marca de la Manufactura:</label>
+                <input type="text" class="form-control" id="MarcaManufactura" name="MarcaManufactura" placeholder="Manufactura de Producto">
+            </div>
 
-                    <div class="form-group">
-                        <label for="TecladoMarcaModeloSerial">Marca o Serial de Teclado:</label>
-                        <input type="text" class="form-control" id="TecladoMarcaModeloSerial" name="TecladoMarcaModeloSerial" placeholder="Manufactura de Teclado">
-                    </div>
+            <div class="form-group">
+                <label for="TecladoMarcaModeloSerial">Marca o Serial de Teclado:</label>
+                <input type="text" class="form-control" id="TecladoMarcaModeloSerial" name="TecladoMarcaModeloSerial" placeholder="Manufactura de Teclado">
+            </div>
 
-                    <div class="form-group">
-                        <label for="ReguladorVoltajeSerial">Marca o Serial del Regulador:</label>
-                        <input type="text" class="form-control" id="ReguladorVoltajeSerial" name="ReguladorVoltajeSerial" placeholder="Numero de Serie del Regulador">
-                    </div>
+            <div class="form-group">
+                <label for="ReguladorVoltajeSerial">Marca o Serial del Regulador:</label>
+                <input type="text" class="form-control" id="ReguladorVoltajeSerial" name="ReguladorVoltajeSerial" placeholder="Numero de Serie del Regulador">
+            </div>
 
-                    <div class="form-group">
-                        <label for="MonitorMarcaModeloSerial ">Marca o Serial del Monitor:</label>
-                        <input type="text" class="form-control" id="MonitorMarcaModeloSerial" name="MonitorMarcaModeloSerial" placeholder="Numero de Serie del Monitor">
-                    </div>
+            <div class="form-group">
+                <label for="MonitorMarcaModeloSerial">Marca o Serial del Monitor:</label>
+                <input type="text" class="form-control" id="MonitorMarcaModeloSerial" name="MonitorMarcaModeloSerial" placeholder="Numero de Serie del Monitor">
+            </div>
 
-                    <div class="form-group">
-                        <label for="MouseMarcaModeloSerial ">Marca o Serial del Mouse:</label>
-                        <input type="text" class="form-control" id="MouseMarcaModeloSerial" name="MouseMarcaModeloSerial" placeholder="Numero de Serie del Mouse">
-                    </div>
+            <div class="form-group">
+                <label for="MouseMarcaModeloSerial">Marca o Serial del Mouse:</label>
+                <input type="text" class="form-control" id="MouseMarcaModeloSerial" name="MouseMarcaModeloSerial" placeholder="Numero de Serie del Mouse">
+            </div>
 
-                    <div class="form-group">
-                        <label for="LectorOpticoMarcaModeloSerial  ">Marca o Serial de Unidad DVD:</label>
-                        <input type="text" class="form-control" id="LectorOpticoMarcaModeloSerial" name="LectorOpticoMarcaModeloSerial" placeholder="Numero de Serie de DVD">
-                    </div>
+            <div class="form-group">
+                <label for="CPUModeloSerial">Marca o Serial de Unidad Procesamiento:</label>
+                <input type="text" class="form-control" id="CPUModeloSerial" name="CPUModeloSerial" placeholder="Numero de Serie Procesador">
+            </div>
 
-                    <div class="form-group">
-                        <label for="CPUModeloSerial    ">Marca o Serial de Unidad Procesamiento :</label>
-                        <input type="text" class="form-control" id="CPUModeloSerial" name="CPUModeloSerial" placeholder="Numero de Serie Procesador">
-                    </div>
+            <div class="form-group">
+                <label for="DiscoDuroModeloSerial">Marca o Serial de Unidad SSD:</label>
+                <input type="text" class="form-control" id="DiscoDuroModeloSerial" name="DiscoDuroModeloSerial" placeholder="Numero de Serie Disco SSD">
+            </div>
 
-                    <div class="form-group">
-                        <label for="DiscoDuroModeloSerial">Marca o Serial de Unidad SSD :</label>
-                        <input type="text" class="form-control" id="DiscoDuroModeloSerial" name="DiscoDuroModeloSerial" placeholder="Numero de Serie Disco SSD">
-                    </div>
+            <div class="form-group">
+                <label for="MacEthernetSerial">Caracteristicas de Direccion Mac Eth0:</label>
+                <input type="text" class="form-control" id="MacEthernetSerial" name="MacEthernetSerial" placeholder="Direccion Mac ETH0">
+            </div>
 
-                    <div class="form-group">
-                        <label for="MacEthernetSerial">Caracteristicas de Direccion Mac Eth0:</label>
-                        <input type="text" class="form-control" id="MacEthernetSerial" name="MacEthernetSerial" placeholder="Direccion Mac ETH0">
-                    </div>
+            <div class="form-group">
+                <label for="MacWIFISerial">Caracteristicas de la Direccion Mac WiFi:</label>
+                <input type="text" class="form-control" id="MacWIFISerial" name="MacWIFISerial" placeholder="Direccion Mac Wifi">
+            </div>
 
-                    <div class="form-group">
-                        <label for="MacWIFISerial ">Caracteristicas de la Direccion Mac WiFi:</label>
-                        <input type="text" class="form-control" id="MacWIFISerial" name="MacWIFISerial" placeholder="Direccion Mac Wifi">
-                    </div>
+            <div class="form-group">
+                <label for="VelocidadHash">Calculo de Hash:</label>
+                <input type="text" class="form-control" id="VelocidadHash" name="VelocidadHash" placeholder="Testeado en Linux con HASHCAT">
+            </div>
 
-                    <div class="form-group">
-                        <label for="VelocidadHash ">Calculo de Hash:</label>
-                        <input type="text" class="form-control" id="VelocidadHash" name="VelocidadHash" placeholder="Testeado en Linux con HASHCAT">
-                    </div>
+            <div class="form-group">
+                <label for="DescripcionProducto">Descripción General:</label>
+                <textarea class="form-control" id="DescripcionProducto" name="DescripcionProducto" placeholder="Descripción Generalizada" rows="5"></textarea>
+            </div>
 
-                    <div class="form-group">
-                        <label for="DescripcionProducto">Descripción General:</label>
-                        <textarea class="form-control" id="DescripcionProducto" name="DescripcionProducto" placeholder="Descripción Generalizada" rows="5"></textarea>
-                    </div>
+            <div class="form-group">
+                <label for="HistorialMantenimientos">Historial de Mantenimientos:</label>
+                <textarea class="form-control" id="HistorialMantenimientos" name="HistorialMantenimientos" placeholder="Historial de Mantenimientos" rows="4"></textarea>
+            </div>
 
-                    <div class="form-group">
-                        <label for="HistorialMantenimientos">Historial de Mantenimientos:</label>
-                        <textarea class="form-control" id="HistorialMantenimientos" name="HistorialMantenimientos" placeholder="Historial de Mantenimientos" rows="4"></textarea>
-                    </div>
 
                     <button type="submit" class="btn btn-primary">Agregar Equipo</button>
 
