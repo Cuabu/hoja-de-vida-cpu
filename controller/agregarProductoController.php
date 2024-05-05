@@ -4,10 +4,11 @@ include_once('../model/productoDAO.php');
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $codigoEquipo = $_POST["CodigoEquipo"];
-    $fechaIngreso = $_POST["FechaIngreso"];
+    $nombreSala = $_POST["NombreSala"];
     $nombreEquipo = $_POST["NombreEquipo"];
-    $responsableEquipo = $_POST["ResponsableEquipo"];
-    $marcaManufactura = $_POST["MarcaManufactura"]; // Corregido aquí
+    $numeroEquipo = $_POST["NumeroEquipo"];
+    $campus = $_POST["Campus"];
+    $marcaManufactura = $_POST["MarcaManufactura"];
     $tecladoMarcaModeloSerial = $_POST["TecladoMarcaModeloSerial"];
     $reguladorVoltajeSerial = $_POST["ReguladorVoltajeSerial"];
     $monitorMarcaModeloSerial = $_POST["MonitorMarcaModeloSerial"];
@@ -16,17 +17,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $discoDuroModeloSerial = $_POST["DiscoDuroModeloSerial"];
     $macEthernetSerial = $_POST["MacEthernetSerial"];
     $macWIFISerial = $_POST["MacWIFISerial"];
+    $observaciones = $_POST["Observaciones"];
+    $responsableEquipo = $_POST["ResponsableEquipo"];
+    $fechaIngreso = $_POST["FechaIngreso"];
     $velocidadHash = $_POST["VelocidadHash"];
     $descripcionProducto = $_POST["DescripcionProducto"];
     $historialMantenimientos = $_POST["HistorialMantenimientos"];
+    $detallesReparacion = $_POST["DetallesReparacion"];
 
     $productoDAO = new ProductoDAO();
 
     if ($productoDAO->agregarProducto(
         $codigoEquipo,
-        $fechaIngreso,
+        $nombreSala,
         $nombreEquipo,
-        $responsableEquipo,
+        $numeroEquipo,
+        $campus,
         $marcaManufactura,
         $tecladoMarcaModeloSerial,
         $reguladorVoltajeSerial,
@@ -36,9 +42,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $discoDuroModeloSerial,
         $macEthernetSerial,
         $macWIFISerial,
+        $observaciones,
+        $responsableEquipo,
+        $fechaIngreso,
         $velocidadHash,
         $descripcionProducto,
-        $historialMantenimientos
+        $historialMantenimientos,
+        $detallesReparacion
     )) {
         header("Location: ../administrador.php");
         exit();
@@ -46,4 +56,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Error al agregar el producto.";
     }
 }
+
 ?>
