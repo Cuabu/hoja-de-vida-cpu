@@ -1,8 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>lista de Computadores</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<style>
+        header {
+            text-align: center; /* Centrar contenido dentro del header */
+        }
+        header img {
+            display: inline-block; /* Alinear la imagen como bloque en línea */
+        
+
+        padding-top: 10px;
+        margin-top: 20px;
+        }
+    </style>
+
+</style>
+
+<header>
+        <img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
+        <!-- Contenido adicional del encabezado si es necesario -->
+    </header>
+<br>
+<body>
 <?php
-// Verificar si se ha enviado el formulario y el ID del equipo está presente
-if (isset($_POST['CodigoEquipo']) && !empty($_POST['CodigoEquipo'])) {
-    // Obtener el ID del equipo desde el formulario
-    $codigoEquipo = $_POST['CodigoEquipo'];
+// Verificar si se ha enviado el formulario y el nombre del equipo está presente
+if (isset($_GET['NombreEquipo']) && !empty($_GET['NombreEquipo'])) {
+    // Obtener el nombre del equipo desde el formulario
+    $nombreEquipo = $_GET['NombreEquipo'];
 
     // Conectar a la base de datos (reemplaza los valores según tu configuración)
     $servername = "localhost";
@@ -18,8 +48,8 @@ if (isset($_POST['CodigoEquipo']) && !empty($_POST['CodigoEquipo'])) {
         die("Error de conexión: " . $conn->connect_error);
     }
 
-    // Consulta SQL para obtener los datos del equipo por ID
-    $sql = "SELECT * FROM equipos WHERE CodigoEquipo = '$codigoEquipo'";
+    // Consulta SQL para obtener los datos del equipo por nombre
+    $sql = "SELECT * FROM equipos WHERE NombreEquipo LIKE '%$nombreEquipo%'";
 
     // Ejecutar la consulta
     $result = $conn->query($sql);
@@ -27,7 +57,7 @@ if (isset($_POST['CodigoEquipo']) && !empty($_POST['CodigoEquipo'])) {
     if ($result->num_rows > 0) {
         // Mostrar los datos del equipo
         echo "<table>";
-        echo "<tr><th>ID</th><th>Código de Equipo</th><th>Fecha de Ingreso</th><th>Nombre del Equipo</th><th>Responsable de Equipo</th><th>Marca de Manufactura</th><th>Marca o Serial de Teclado</th><th>Marca o Serial del Regulador</th><th>Marca o Serial del Monitor</th><th>Marca o Serial del Mouse</th><th>Marca o Serial de Unidad DVD</th><th>Marca o Serial de Unidad Procesamiento</th><th>Marca o Serial de Unidad SSD</th><th>Características de Dirección Mac Eth0</th><th>Características de la Dirección Mac WiFi</th><th>Cálculo de Hash</th><th>Descripción General</th><th>Historial de Mantenimientos</th></tr>";
+        echo "<tr><th>ID</th><th>Código de Equipo</th><th>Fecha de Ingreso</th><th>Nombre del Equipo</th><th>Responsable de Equipo</th><th>Marca de Manufactura</th><th>Marca o Serial de Teclado</th><th>Marca o Serial del Regulador</th><th>Marca o Serial del Monitor</th><th>Marca o Serial del Mouse</th><th>Marca o Serial de Unidad DVD</th><th>Marca o Serial de Unidad Procesamiento</th><th>Marca o Serial de Unidad SSD</th><th>Características de Dirección Mac Eth0</th><th>Características de la Dirección Mac WiFi</th><th>Cálculo de Hash</th><th>Descripción General</th><th>Historial de Mantenimientos</th><th>Observaciones</th></tr>";
 
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
@@ -41,11 +71,11 @@ if (isset($_POST['CodigoEquipo']) && !empty($_POST['CodigoEquipo'])) {
             echo "<td>".$row["ReguladorVoltajeSerial"]."</td>";
             echo "<td>".$row["MonitorMarcaModeloSerial"]."</td>";
             echo "<td>".$row["MouseMarcaModeloSerial"]."</td>";
-            echo "<td>".$row["LectorOpticoMarcaModeloSerial"]."</td>";
             echo "<td>".$row["CPUModeloSerial"]."</td>";
             echo "<td>".$row["DiscoDuroModeloSerial"]."</td>";
             echo "<td>".$row["MacEthernetSerial"]."</td>";
             echo "<td>".$row["MacWIFISerial"]."</td>";
+            echo "<td>".$row["Observaciones"]."</td>";
             echo "<td>".$row["VelocidadHash"]."</td>";
             echo "<td>".$row["DescripcionProducto"]."</td>";
             echo "<td>".$row["HistorialMantenimientos"]."</td>";
@@ -53,12 +83,12 @@ if (isset($_POST['CodigoEquipo']) && !empty($_POST['CodigoEquipo'])) {
         }
         echo "</table>";
     } else {
-        echo "No se encontraron resultados para el equipo con ID: $codigoEquipo";
+        echo "No se encontraron resultados para el equipo con nombre: $nombreEquipo";
     }
 
     // Cerrar la conexión
     $conn->close();
 } else {
-    echo "ID del equipo no especificado.";
+    echo "Nombre del equipo no especificado.";
 }
 ?>

@@ -23,8 +23,6 @@ $query = mysqli_query($conn, $sql);
         }
         header img {
             display: inline-block; /* Alinear la imagen como bloque en línea */
-        
-
         padding-top: 10px;
         margin-top: 20px;
         }
@@ -54,7 +52,7 @@ $query = mysqli_query($conn, $sql);
         </div>
         <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
             <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#generarExcel">
-                Documento Excel Equipos
+                Descargar Documento Excel Equipos
             </button>
         </div>
     </div>
@@ -64,9 +62,14 @@ $query = mysqli_query($conn, $sql);
                 Ver Salas
             </button>
         </div>
+            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
+                    Consultar Equipo por Sala
+                </button>
+        </div>
         <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoId">
-                Consultar Equipo por Codigo
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoNombre">
+                Consultar Equipo por Nombre
             </button>
         </div>
     </div>
@@ -110,6 +113,58 @@ $query = mysqli_query($conn, $sql);
         window.location.href = "../hoja de vida cpu/controller/consultarEquipoSalas.php?NombreSala=" + nombreSala;
     }
 </script>
+
+<!-- Modal para descargar Excel equipo -->
+<div class="modal fade" id="generarExcel" tabindex="-1" role="dialog" aria-labelledby="generarExcelLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="generarExcelLabel">Descargar Excel Equipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="./controller/generarDocEquipos.php" method="GET">
+                    
+                    <button type="submit" class="btn btn-primary">Descargar Excel</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal para consultar equipo por nombre -->
+<div class="modal fade" id="consultarEquipoNombre" tabindex="-1" role="dialog" aria-labelledby="consultarEquipoNombreLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="consultarEquipoNombreLabel">Seleccionar Equipo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="equipoForm">
+                    <div class="form-group">
+                        <label for="equipoInput">Nombre del Equipo:</label>
+                        <input type="text" class="form-control" id="equipoInput" name="equipo">
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="descargarExcelEquipo()">Consultar Equipo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function descargarExcelEquipo() {
+        var nombreEquipo = document.getElementById("equipoInput").value;
+        window.location.href = "../hoja de vida cpu/controller/consultarEquipoNombre.php?NombreEquipo=" + nombreEquipo;
+    }
+</script>
+
 
  <!-- Modal para modificar producto -->
  <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
