@@ -15,6 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Validar y limpiar los datos del formulario
     $nombreUsuario = validarDatos($_POST['nombreUsuario']);
     $passwdUsuario = validarDatos($_POST['passwdUsuario']);
+    $emailUsuario = validarDatos($_POST['emailUsuario']);
+
 
     // Verificar si los datos no están vacíos
     if (!empty($nombreUsuario) && !empty($passwdUsuario)) {
@@ -23,11 +25,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $conn = $conexion->conectar();
 
         // Preparar la consulta SQL utilizando una consulta preparada para evitar inyección SQL
-        $sql = "INSERT INTO usuario (NombreUsuario, PasswdUsuario) VALUES (?, ?)";
+        $sql = "INSERT INTO usuario (NombreUsuario, PasswdUsuario, emailUsuario) VALUES (?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
 
         // Vincular los parámetros de la consulta preparada
-        mysqli_stmt_bind_param($stmt, "ss", $nombreUsuario, $passwdUsuario);
+        mysqli_stmt_bind_param($stmt, "sss", $nombreUsuario, $passwdUsuario, $emailUsuario);
 
         // Ejecutar la consulta preparada
         if (mysqli_stmt_execute($stmt)) {
