@@ -70,7 +70,8 @@
             echo "</tbody></table>";
             echo "</div>";
             // Botón para regresar
-            echo "<div class='container'><a href='javascript:history.back()' class='btn btn-secondary mt-3 mr-2'>Volver</a><button class='btn btn-primary mt-3' onclick='descargarPDF()'>Descargar PDF</button></div>";
+            echo "<div class='container'><a href='javascript:history.back()' class='btn btn-secondary mt-3 mr-2'>Volver</a><button class='btn btn-primary mt-3' onclick='consultarOtroScript()'>Descargar Excel</button></div>";
+
         } else {
             echo "<div class='container mt-4'><p>No se encontraron resultados para la sala: $nombreSala</p></div>";
         }
@@ -85,12 +86,15 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script>
-        function descargarPDF() {
-            const doc = new jsPDF();
-            doc.autoTable({html: '#tabla-sala'});
-            doc.save('detalle_sala.pdf');
-        }
-    </script>
+    function consultarOtroScript() {
+        // Obtener el nombre del equipo desde el formulario
+        var nombreSala = "<?php echo $nombreSala; ?>";
+        
+        // Redirigir al script deseado
+        window.location.href = "../controller/generarDocSala.php?NombreSala=" + nombreSala;
+    }
+</script>
+
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>

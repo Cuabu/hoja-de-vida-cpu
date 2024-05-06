@@ -64,7 +64,9 @@
             echo "</tbody></table>";
             echo "</div>";
             // Botón para regresar
-            echo "<div class='container'><a href='javascript:history.back()' class='btn btn-secondary mt-3 mr-2'>Volver</a><button class='btn btn-primary mt-3' onclick='consultarOtroScript()'>Descargar Excel</button></div>";
+            // Botón para regresar y descargar Excel
+            echo "<div class='container'><a href='javascript:history.back()' class='btn btn-secondary mt-3 mr-2'>Volver</a><a href='../controller/generarDocNombre.php?NombreEquipo=$nombreEquipo' class='btn btn-primary mt-3'>Descargar Excel</a></div>";
+
         } else {
             echo "<div class='container mt-4'><p>No se encontraron resultados para la sala: $nombreEquipo</p></div>";
         }
@@ -84,9 +86,10 @@
         var nombreEquipo = "<?php echo $nombreEquipo; ?>";
         
         // Redirigir al script deseado
-        window.location.href = "../controller/generarDocNombre.php?NombreEquipo=" + nombreEquipo;
+        window.location.href = "../controller/generarDocEquipos.php?NombreEquipo=" + nombreEquipo;
     }
 </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -66,11 +66,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="confirmarPasswd">Confirmar Contraseña:</label>
-                        <input type="password" class="form-control" id="confirmarPasswd" name="confirmarPasswd" placeholder="Confirmar Contraseña">
-                    </div>
-
-                    <div class="form-group">
                         <label for="emailUsuario">Correo Electrónico:</label>
                         <input type="email" class="form-control" id="emailUsuario" name="emailUsuario" placeholder="Correo Electrónico">
                     </div>
