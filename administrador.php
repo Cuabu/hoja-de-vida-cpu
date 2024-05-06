@@ -430,6 +430,16 @@ $query = mysqli_query($conn, $sql);
         width: 150px; /* Ajusta el ancho según sea necesario */
     }
 </style>
+<style>
+    /* Estilos personalizados */
+    .acciones-column {
+        width: 250px; /* Ancho ajustable según necesidades */
+    }
+
+    .acciones-column .btn {
+        margin-bottom: 5px;
+    }
+</style>
 
 <div class="container mt-4">
     <table class="table table-bordered">
@@ -449,14 +459,16 @@ $query = mysqli_query($conn, $sql);
                     <td><?= $row['NombreSala'] ?></td>
                     <td><?= $row['NombreEquipo'] ?></td>
                     <td><?= $row['DescripcionProducto'] ?></td>
-                    <td>
+                    <td class="acciones-column">
                         <!-- Enlace para eliminar producto -->
-                        <a href="./controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger mr-2">Eliminar</a>
+                        <a href="./controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger btn-sm">Eliminar</a><br>
                      
+                        <a href="./controller/InfoCompleta.php?id=<?= $row['Id'] ?>" class="btn btn-primary btn-sm mt-2">Ver Información</a><br>
+
                         <form action="./controller/InsertarInformacionController.php" method="post" class="d-inline">
                             <input type="hidden" name="Id" value="<?= $row['Id'] ?>">
-                            <input type="text" name="InformacionCompleta" placeholder="Ingresa Toda Información...">
-                            <button type="submit" class="btn btn-primary">Enviar Informacion</button>
+                            <input type="text" name="InformacionCompleta" placeholder="Ingresa Toda Información..." class="form-control mb-2">
+                            <button type="submit" class="btn btn-success btn-sm">Enviar Informacion</button>
                         </form>
                     </td>
                 </tr>
@@ -464,7 +476,6 @@ $query = mysqli_query($conn, $sql);
         </tbody>
     </table>
 </div>
-
 
 
 
