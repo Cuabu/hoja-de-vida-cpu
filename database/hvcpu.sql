@@ -26,52 +26,10 @@ CREATE TABLE equipos (
   ResponsableEquipo varchar(50) DEFAULT NULL,
   FechaIngreso date DEFAULT NULL,
   VelocidadHash varchar(15) DEFAULT NULL,
-  DescripcionProducto varchar(150) DEFAULT NULL,
-  HistorialMantenimientos varchar(550) DEFAULT NULL,
+  DescripcionProducto varchar(550) DEFAULT NULL,
+  HistorialMantenimientos text DEFAULT NULL,
   DetallesReparacion text DEFAULT NULL,
-  PRIMARY KEY (Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Crear tabla de dispositivos
-CREATE TABLE dispositivo (
-  DispositivoId int(11) DEFAULT NULL,
-  MarcaSerial varchar(50) DEFAULT NULL,
-  Observaciones text DEFAULT NULL,
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Crear tabla de mantenimientos
-CREATE TABLE mantenimientos (
-  EquipoId int(11) DEFAULT NULL,
-  TipoMantenimiento varchar(20) DEFAULT NULL,
-  CedulaResponsable int(11) DEFAULT NULL,
-  FirmaResponsableEquipo varchar(50) DEFAULT NULL,
-  NombreResponsable varchar(50) DEFAULT NULL,
-  DescripcionMantenimiento text DEFAULT NULL,
-  RealizadoPor varchar(50) DEFAULT NULL,
-  Observaciones text DEFAULT NULL,
-  Capacidad int(11) DEFAULT NULL,
-  FirmaSoporteTecnico varchar(50) DEFAULT NULL,
-  NombreSoporteTecnico varchar(50) DEFAULT NULL,
-  PRIMARY KEY (Id),
-  FOREIGN KEY (EquipoId) REFERENCES equipos(Id)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Crear tabla de salas
-CREATE TABLE salas (
-  Id int(11) NOT NULL AUTO_INCREMENT,
-  EquipoId int(11) DEFAULT NULL,
-  VBeamId int(11) DEFAULT NULL,
-  Observaciones text DEFAULT NULL,
-  Capacidad int(11) DEFAULT NULL,
-  PRIMARY KEY (Id),
-  FOREIGN KEY (EquipoId) REFERENCES equipos(Id),
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- Crear tabla de dispositivos externos conectados
-CREATE TABLE dispext (
-  Id int(11) NOT NULL AUTO_INCREMENT,
-  NombreDispositivo varchar(50) DEFAULT NULL,
-  Conectado tinyint(1) DEFAULT NULL,
+  InformacionCompleta text DEFAULT NULL,
   PRIMARY KEY (Id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 

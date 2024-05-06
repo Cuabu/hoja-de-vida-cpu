@@ -438,7 +438,7 @@ $query = mysqli_query($conn, $sql);
                 <th>Id</th>
                 <th>Nombre Sala</th>
                 <th>Nombre Equipo</th>
-                <th>Descripcion Producto</th>
+                <th>Descripción Producto</th>
                 <th class="acciones-column">Acciones</th> <!-- Agrega la clase a esta columna -->
             </tr>
         </thead>
@@ -451,13 +451,21 @@ $query = mysqli_query($conn, $sql);
                     <td><?= $row['DescripcionProducto'] ?></td>
                     <td>
                         <!-- Enlace para eliminar producto -->
-                        <a href="./controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger">Eliminar</a>
+                        <a href="./controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger mr-2">Eliminar</a>
+                     
+                        <form action="./controller/InsertarInformacionController.php" method="post" class="d-inline">
+                            <input type="hidden" name="Id" value="<?= $row['Id'] ?>">
+                            <input type="text" name="InformacionCompleta" placeholder="Ingresa Toda Información...">
+                            <button type="submit" class="btn btn-primary">Enviar Informacion</button>
+                        </form>
                     </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
     </table>
 </div>
+
+
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
