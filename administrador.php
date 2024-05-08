@@ -24,7 +24,7 @@ $query = mysqli_query($conn, $sql);
         header img {
             display: inline-block; /* Alinear la imagen como bloque en línea */
         padding-top: 10px;
-        margin-top: 20px;
+        margin-top: 10px;
         }
     </style>
 
@@ -36,44 +36,80 @@ $query = mysqli_query($conn, $sql);
     </header>
 <br>
 <body>
+<style>
+    /* Estilos para el contenedor */
+    .button-container {
+        border: 1.5px solid black; 
+        padding: 20px;
+        margin-bottom: 10px; 
+        background-color: #f0f0f0; 
+        margin: 0 auto; 
+        overflow: hidden; 
+        margin-left: 20px; 
+        margin-right: 20px; 
+    }
 
+    /* Estilos para los botones */
+    .button-container button {
+        margin-bottom: 7px; /* Margen inferior entre los botones */
+    }
+</style>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#agregarModal">
-                Registrar Equipo
-            </button>
+<style>
+    .acciones-column {
+        width: 150px; /* Ajusta el ancho según sea necesario */
+    }
+</style>
+<style>
+    /* Estilos personalizados */
+    .acciones-column {
+        width: 250px; /* Ancho ajustable según necesidades */
+    }
+
+    .acciones-column .btn {
+        margin-bottom: 5px;
+    }
+</style>
+
+<div class="button-container">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#agregarModal">
+                    Registrar Equipo
+                </button>
+            </div>
+            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modificarDispositivo">
+                    Modificar Equipo
+                </button>
+            </div>
+            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#generarExcel">
+                    Descargar Documento Excel Equipos
+                </button>
+            </div>
         </div>
-        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modificarDispositivo">
-                Modificar Equipo
-            </button>
-        </div>
-        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#generarExcel">
-                Descargar Documento Excel Equipos
-            </button>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
-                Ver Salas
-            </button>
-        </div>
+        <div class="row">
+            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
+                    Ver Salas
+                </button>
+            </div>
             <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
                 <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
                     Consultar Equipo por Sala
                 </button>
-        </div>
-        <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoNombre">
-                Consultar Equipo por Nombre
-            </button>
+            </div>
+            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoNombre">
+                    Consultar Equipo por Nombre
+                </button>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal para consultar sala descargando el excel -->
 <div class="modal fade" id="consultarEquipoSala" tabindex="-1" role="dialog" aria-labelledby="consultarEquipoSalaLabel" aria-hidden="true">
@@ -425,21 +461,7 @@ $query = mysqli_query($conn, $sql);
     </div>
 </div>
 
-<style>
-    .acciones-column {
-        width: 150px; /* Ajusta el ancho según sea necesario */
-    }
-</style>
-<style>
-    /* Estilos personalizados */
-    .acciones-column {
-        width: 250px; /* Ancho ajustable según necesidades */
-    }
 
-    .acciones-column .btn {
-        margin-bottom: 5px;
-    }
-</style>
 
 <div class="container mt-4">
     <table class="table table-bordered">

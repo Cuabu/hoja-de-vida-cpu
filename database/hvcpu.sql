@@ -7,11 +7,10 @@ CREATE TABLE equipos (
   Id int(11) NOT NULL AUTO_INCREMENT,
   CodigoEquipo varchar(20) DEFAULT NULL,
   NombreSala varchar(50) DEFAULT NULL,
-  NombreEquipo varchar(20) DEFAULT NULL,
+  NombreEquipo varchar(90) DEFAULT NULL,
   NumeroEquipo varchar (10) DEFAULT NULL,
   Campus varchar (20) DEFAULT NULL,
   
-
   MarcaManufactura varchar(50) DEFAULT NULL,
   TecladoMarcaModeloSerial varchar(50) DEFAULT NULL,
   ReguladorVoltajeSerial varchar(50) DEFAULT NULL,
@@ -19,8 +18,8 @@ CREATE TABLE equipos (
   MouseMarcaModeloSerial varchar(50) DEFAULT NULL,
   CPUModeloSerial varchar(50) DEFAULT NULL,
   DiscoDuroModeloSerial varchar(50) DEFAULT NULL,
-  MacEthernetSerial varchar(15) DEFAULT NULL,
-  MacWIFISerial varchar(15) DEFAULT NULL,
+  MacEthernetSerial varchar(25) DEFAULT NULL,
+  MacWIFISerial varchar(25) DEFAULT NULL,
     
   Observaciones text DEFAULT NULL,
   ResponsableEquipo varchar(50) DEFAULT NULL,
