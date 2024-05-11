@@ -9,6 +9,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $NombreEquipo = $_POST['NombreEquipo'];
     $NumeroEquipo = $_POST['NumeroEquipo'];
     $Campus = $_POST['Campus'];
+    $MemoriaRam = $_POST['MemoriaRam'];
     $MarcaManufactura = $_POST['MarcaManufactura'];
     $tecladoMarcaModeloSerial = $_POST['TecladoMarcaModeloSerial'];
     $reguladorVoltajeSerial = $_POST['ReguladorVoltajeSerial'];
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $productoDAO = new ProductoDAO();
 
     // Llama al método para modificar el producto
-    $resultado = $productoDAO->modificarProducto($Id, $codigoEquipo, $NombreSala, $NombreEquipo, $NumeroEquipo, $Campus, $MarcaManufactura, $tecladoMarcaModeloSerial, $reguladorVoltajeSerial, $monitorMarcaModeloSerial, $mouseMarcaModeloSerial, $cpuModeloSerial, $discoDuroModeloSerial, $macEthernetSerial, $macWIFISerial, $Observaciones, $responsableEquipo, $fechaIngreso, $velocidadHash, $descripcionProducto, $historialMantenimientos, $DetallesReparacion);
+    $resultado = $productoDAO->modificarProducto($Id, $codigoEquipo, $NombreSala, $NombreEquipo, $NumeroEquipo, $Campus, $MemoriaRam, $MarcaManufactura, $tecladoMarcaModeloSerial, $reguladorVoltajeSerial, $monitorMarcaModeloSerial, $mouseMarcaModeloSerial, $cpuModeloSerial, $discoDuroModeloSerial, $macEthernetSerial, $macWIFISerial, $Observaciones, $responsableEquipo, $fechaIngreso, $velocidadHash, $descripcionProducto, $historialMantenimientos, $DetallesReparacion);
 
     if ($resultado) {
         // Éxito: redirige o muestra mensaje de éxito

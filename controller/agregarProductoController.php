@@ -8,6 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nombreEquipo = $_POST["NombreEquipo"];
     $numeroEquipo = $_POST["NumeroEquipo"];
     $campus = $_POST["Campus"];
+    $MemoriaRam = $_POST['MemoriaRam'];
     $marcaManufactura = $_POST["MarcaManufactura"];
     $tecladoMarcaModeloSerial = $_POST["TecladoMarcaModeloSerial"];
     $reguladorVoltajeSerial = $_POST["ReguladorVoltajeSerial"];
@@ -33,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nombreEquipo,
         $numeroEquipo,
         $campus,
+        $MemoriaRam,
         $marcaManufactura,
         $tecladoMarcaModeloSerial,
         $reguladorVoltajeSerial,

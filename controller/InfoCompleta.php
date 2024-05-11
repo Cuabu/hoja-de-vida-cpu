@@ -52,15 +52,15 @@
         }
 
         // Consultar la base de datos para obtener la información completa del elemento con el ID proporcionado
-        $sql = "SELECT InformacionCompleta FROM equipos WHERE Id = $id";
+        $sql = "SELECT DescripcionProducto FROM equipos WHERE Id = $id";
 
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // Mostrar la información completa del elemento
             $row = $result->fetch_assoc();
-            echo "<h2>Información Completa:</h2>";
-            echo "<p>" . $row["InformacionCompleta"] . "</p>";
+            echo "<h2>Descripcion Completa:</h2>";
+            echo "<p>" . $row["DescripcionProducto"] . "</p>";
         } else {
             echo "No se encontró información para el ID proporcionado.";
         }

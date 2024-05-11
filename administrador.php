@@ -242,6 +242,11 @@ $query = mysqli_query($conn, $sql);
                     </div>
 
                     <div class="form-group">
+                        <label for="MemoriaRam">Memoria Ram:</label>
+                        <input type="text" class="form-control" id="MemoriaRam" name="MemoriaRam" placeholder="Cantidad de Memoria RAM Instalada">
+                    </div>
+
+                    <div class="form-group">
                         <label for="MarcaManufactura">Marca de la Manufactura:</label>
                         <input type="text" class="form-control" id="MarcaManufactura" name="MarcaManufactura" placeholder="Manufactura de Producto">
                     </div>
@@ -374,6 +379,11 @@ $query = mysqli_query($conn, $sql);
                     </div>
 
                     <div class="form-group">
+                        <label for="MemoriaRam">Memoria Ram:</label>
+                        <input type="text" class="form-control" id="MemoriaRam" name="MemoriaRam" placeholder="Cantidad de Memoria RAM Instalada">
+                    </div>
+
+                    <div class="form-group">
                         <label for="MarcaManufactura">Marca de la Manufactura:</label>
                         <input type="text" class="form-control" id="MarcaManufactura" name="MarcaManufactura" placeholder="Manufactura de Producto">
                     </div>
@@ -461,8 +471,6 @@ $query = mysqli_query($conn, $sql);
     </div>
 </div>
 
-
-
 <div class="container mt-4">
     <table class="table table-bordered">
         <thead>
@@ -470,7 +478,8 @@ $query = mysqli_query($conn, $sql);
                 <th>Id</th>
                 <th>Nombre Sala</th>
                 <th>Nombre Equipo</th>
-                <th>Descripción Producto</th>
+                <th>Campus</th>
+                <th>Marca de PC</th>
                 <th class="acciones-column">Acciones</th> <!-- Agrega la clase a esta columna -->
             </tr>
         </thead>
@@ -480,7 +489,8 @@ $query = mysqli_query($conn, $sql);
                     <td><?= $row['Id'] ?></td>
                     <td><?= $row['NombreSala'] ?></td>
                     <td><?= $row['NombreEquipo'] ?></td>
-                    <td><?= $row['DescripcionProducto'] ?></td>
+                    <td><?= $row['Campus'] ?></td>
+                    <td><?= $row['MarcaManufactura'] ?></td>
                     <td class="acciones-column">
                         <!-- Enlace para eliminar producto -->
                         <a href="./controller/eliminarProductoController.php?id=<?= $row['Id'] ?>" class="btn btn-danger btn-sm">Eliminar</a><br>
