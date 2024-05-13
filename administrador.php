@@ -35,14 +35,16 @@ $query = mysqli_query($conn, $sql);
         <!-- Contenido adicional del encabezado si es necesario -->
     </header>
 <br>
+
 <body>
+
 <style>
     /* Estilos para el contenedor */
     .button-container {
         border: 1.5px solid black; 
         padding: 20px;
         margin-bottom: 10px; 
-        background-color: #f0f0f0; 
+        background-color: #d68681; 
         margin: 0 auto; 
         overflow: hidden; 
         margin-left: 20px; 
@@ -73,43 +75,45 @@ $query = mysqli_query($conn, $sql);
 
 <div class="button-container">
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#agregarModal">
-                    Registrar Equipo
-                </button>
-            </div>
-            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modificarDispositivo">
-                    Modificar Equipo
-                </button>
-            </div>
-            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#generarExcel">
-                    Descargar Documento Excel Equipos
-                </button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
-                    Ver Salas
-                </button>
-            </div>
-            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoSala">
-                    Consultar Equipo por Sala
-                </button>
-            </div>
-            <div class="col-md-4 mb-3"> <!-- Divide la fila en 4 columnas -->
-                <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#consultarEquipoNombre">
-                    Consultar Equipo por Nombre
-                </button>
-            </div>
-        </div>
+        <select class="custom-select">
+            <option selected>Selecciona una opción</option>
+            <option data-toggle="modal" data-target="#subirRegistros">Subir Registros</option>
+            <option data-toggle="modal" data-target="#agregarModal">Registrar Equipo</option>
+            <option data-toggle="modal" data-target="#modificarDispositivo">Modificar Equipo</option>
+            <option data-toggle="modal" data-target="#generarExcel">Descargar Documento Excel Equipos</option>
+            <option data-toggle="modal" data-target="#consultarEquipoSala">Ver Salas</option>
+            <option data-toggle="modal" data-target="#consultarEquipoSala">Consultar Equipo por Sala</option>
+            <option data-toggle="modal" data-target="#consultarEquipoNombre">Consultar Equipo por Nombre</option>
+        </select>
     </div>
 </div>
 
+<!-- Modal para subir registros -->
+<div class="modal fade" id="subirRegistros" tabindex="-1" role="dialog" aria-labelledby="subirRegistrosLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="subirRegistrosLabel">Subir Registros</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="./controller/uploadArchivo.php" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="fileUpload">Seleccionar archivo(s)</label>
+            <input type="file" class="form-control-file" id="fileUpload" name="file[]" multiple>
+          </div>
+          <button type="submit" class="btn btn-primary">Subir</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="./app/Exports/CPUINFO.py" download="CPUINFO.py" class="btn btn-success">Descargar Registro Automático</a>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- Modal para consultar sala descargando el excel -->
 <div class="modal fade" id="consultarEquipoSala" tabindex="-1" role="dialog" aria-labelledby="consultarEquipoSalaLabel" aria-hidden="true">
@@ -205,7 +209,7 @@ $query = mysqli_query($conn, $sql);
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modificar Equipo</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Registrar Equipo</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

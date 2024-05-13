@@ -4,6 +4,12 @@ import psutil
 import subprocess
 import tkinter as tk
 from tkinter import simpledialog
+from cryptography.fernet import Fernet
+import base64
+
+# Clave estática proporcionada para la encriptación
+clave_encriptacion = b'YHQOwpGLmGaHTdlw-8QtBw0RAa77h4Wmf7BzGyQdgdY='
+cipher_suite = Fernet(clave_encriptacion)
 
 # Función para obtener la información del sistema
 def get_system_info():
@@ -58,7 +64,6 @@ def get_mac_address():
     except Exception as e:
         print("Error al obtener la dirección MAC:", e)
 
-
 # Función para generar el script SQL
 def generate_sql_script(codigo_equipo, nombre_sala, numero_equipo, campus, system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_info, disk_info_extended, network_info, mac_wifi_info, bios_info, adapter_info, os_info):
     try:
@@ -66,9 +71,12 @@ def generate_sql_script(codigo_equipo, nombre_sala, numero_equipo, campus, syste
         nombre_equipo = socket.gethostname()
 
         # Generar el script SQL con los datos
-        sql_script = f"INSERT INTO equipos (codigo_equipo, nombre_sala, nombre_equipo, numero_equipo, campus, memoria_ram, cpu_modelo_serial, disco_duro_modelo_serial, mac_ethernet_serial, mac_wifi_serial, bios_info, adapter_info, os_info, cpu_speed_info, memory_info_extended, disk_info_extended) VALUES ('{codigo_equipo}', '{nombre_sala}', '{nombre_equipo}', '{numero_equipo}', '{campus}', '{memory_info}', '{cpu_info}', '{disk_info}', '{network_info}', '{mac_wifi_info}', '{bios_info}', '{adapter_info}', '{os_info}', '{cpu_speed_info}', '{', '.join(memory_info_extended)}', '{', '.join(disk_info_extended)}');"
-
-        return sql_script
+        sql_script = f"INSERT INTO auto_equipos (codigo_equipo, nombre_sala, nombre_equipo, numero_equipo, campus, memoria_ram, cpu_modelo_serial, disco_duro_modelo_serial, mac_ethernet_serial, mac_wifi_serial, bios_info, adapter_info, os_info, cpu_speed_info, memory_info_extended, disk_info_extended) VALUES ('{codigo_equipo}', '{nombre_sala}', '{nombre_equipo}', '{numero_equipo}', '{campus}', '{memory_info}', '{cpu_info}', '{disk_info}', '{network_info}', '{mac_wifi_info}', '{bios_info}', '{adapter_info}', '{os_info}', '{cpu_speed_info}', '{', '.join(memory_info_extended)}', '{', '.join(disk_info_extended)}');"
+        
+        # Cifrar el script SQL
+        sql_cifrado = cipher_suite.encrypt(sql_script.encode())
+        
+        return sql_cifrado
     except Exception as e:
         print("Error al generar el script SQL:", e)
 
@@ -96,11 +104,13 @@ system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_i
 # Generar script SQL
 sql_script = generate_sql_script(codigo_equipo, nombre_sala, numero_equipo, campus, system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_info, disk_info_extended, network_info, mac_wifi_info, bios_info, adapter_info, os_info)
 
-# Guardar el script SQL en un archivo
+# Guardar el script SQL cifrado en un archivo con el nombre de la sala
 if sql_script:
     try:
-        with open('hardware_info.sql', 'w') as file:
+        # Cambiar el nombre del archivo al nombre de la sala
+        nombre_archivo = f'{nombre_sala}.sql'
+        with open(nombre_archivo, 'wb') as file:
             file.write(sql_script)
-        print("Script SQL generado exitosamente.")
+        print("Script SQL cifrado y generado exitosamente.")
     except Exception as e:
-        print("Error al guardar el script SQL en un archivo:", e)
+        print("Error al guardar el script SQL cifrado en un archivo:", e)

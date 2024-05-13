@@ -48,6 +48,33 @@ CREATE TABLE usuario (
   PRIMARY KEY (Id)
 );
 
+CREATE TABLE auto_equipos (
+    codigo_equipo VARCHAR(50),
+    nombre_sala VARCHAR(50),
+    nombre_equipo VARCHAR(50),
+    numero_equipo VARCHAR(50),
+    campus VARCHAR(50),
+    memoria_ram VARCHAR(50),
+    cpu_modelo_serial VARCHAR(100),
+    disco_duro_modelo_serial VARCHAR(100),
+    mac_ethernet_serial VARCHAR(50),
+    mac_wifi_serial VARCHAR(50),
+    bios_info VARCHAR(100),
+    adapter_info VARCHAR(100),
+    os_info VARCHAR(100),
+    cpu_speed_info VARCHAR(50),
+    memory_info_extended VARCHAR(500),
+    disk_info_extended VARCHAR(500)
+);
+
+CREATE TABLE archivos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    tipo VARCHAR(100) NOT NULL,
+    tamaño INT NOT NULL,
+    fecha_subida TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Crear usuario administrador con todos los permisos
 CREATE USER 'administrador'@'localhost' IDENTIFIED BY 'contraseña';
 GRANT ALL PRIVILEGES ON hvcpu.* TO 'administrador'@'localhost';
