@@ -1,51 +1,106 @@
-import re
+import platform
+import socket
+import psutil
+import subprocess
+import tkinter as tk
+from tkinter import simpledialog
 
-# Texto proporcionado
-texto = """
-$nombreEquipo: CSADP2SLA21NV52
-$marcaManufactura: Dell Inc.
-$cpuModeloSerial: Intel(R) Core(TM) i7-4790S CPU @ 3.20GHz
-$MemoriaRam: 4294967296 Samsung 1600
-$discoDuroModeloSerial: WD C WD5000LPLX-75ZNTT0 500105249280
-$macEthernetSerial: 10-7D-1A-FF-FB-0C
-$macWIFISerial: A4-C4-94-0C-A6-C5
-$observaciones: Ninguna
-"""
+# Función para obtener la información del sistema
+def get_system_info():
+    try:
+        # Obtener información del sistema operativo
+        system_info = platform.uname()
 
-# Expresión regular para encontrar variables
-patron_variable = r"\$(\w+):\s*(.*)"
+        # Obtener información del procesador
+        cpu_info = subprocess.check_output(['wmic', 'cpu', 'get', 'name']).decode().strip().split('\n')[1]
 
-# Diccionario para mapear las variables de texto a las variables de la base de datos
-variables_db = {
-    "nombreEquipo": "nombre_equipo",
-    "marcaManufactura": "marca_manufactura",
-    "cpuModeloSerial": "cpu_modelo_serial",
-    "MemoriaRam": "memoria_ram",
-    "discoDuroModeloSerial": "disco_duro_modelo_serial",
-    "macEthernetSerial": "mac_ethernet_serial",
-    "macWIFISerial": "mac_wifi_serial",
-    "observaciones": "observaciones"
-}
+        # Obtener velocidad de reloj del procesador
+        cpu_speed_info = subprocess.check_output(['wmic', 'cpu', 'get', 'maxclockspeed']).decode().strip().split('\n')[1]
 
-# Inicializar lista para almacenar las inserciones de variables en la base de datos
-inserciones_db = []
+        # Obtener información de la memoria RAM
+        memory_info = subprocess.check_output(['wmic', 'memorychip', 'get', 'capacity']).decode().strip().split('\n')[1]
 
-# Buscar variables en el texto y crear inserciones de variables en la base de datos
-for match in re.finditer(patron_variable, texto):
-    nombre_variable = match.group(1)
-    valor_variable = match.group(2)
-    if nombre_variable in variables_db:
-        nombre_variable_db = variables_db[nombre_variable]
-        insercion = f"{nombre_variable_db}: '{valor_variable.strip()}'"
-    else:
-        insercion = f"{nombre_variable}: 'sin detalles'"
-    inserciones_db.append(insercion)
+        # Obtener información extendida de la memoria RAM
+        memory_info_extended = subprocess.check_output(['wmic', 'memorychip', 'get', 'Manufacturer,Speed,Capacity,PartNumber']).decode().strip().split('\n')[1:]
 
-# Crear consulta SQL para la inserción en la base de datos
-consulta_sql = f"INSERT INTO equipos ({', '.join(variables_db.values())}) VALUES ({', '.join(inserciones_db)});"
+        # Obtener información del disco duro
+        disk_info = subprocess.check_output(['wmic', 'diskdrive', 'get', 'model']).decode().strip().split('\n')[1]
 
-# Guardar la consulta SQL en un archivo de texto
-with open("insercion_bd.txt", "w") as archivo:
-    archivo.write(consulta_sql)
+        # Obtener información extendida del disco duro
+        disk_info_extended = subprocess.check_output(['wmic', 'diskdrive', 'get', 'size']).decode().strip().split('\n')[1:]
 
-print("Consulta SQL generada y guardada en 'insercion_bd.txt'.")
+        # Obtener información de la tarjeta de red
+        network_info = get_mac_address()
+
+        # Obtener dirección MAC de la tarjeta de red WiFi
+        mac_wifi_info = subprocess.check_output(['wmic', 'nic', 'where', 'NetEnabled=true', 'get', 'MACAddress']).decode().strip().split('\n')[1]
+
+        # Obtener información del BIOS
+        bios_info = subprocess.check_output(['wmic', 'bios', 'get', 'serialnumber']).decode().strip().split('\n')[1]
+
+        # Obtener información del adaptador de red
+        adapter_info = subprocess.check_output(['wmic', 'nicconfig', 'get', 'description']).decode().strip().split('\n')[1]
+
+        # Obtener información del sistema operativo
+        os_info = subprocess.check_output(['wmic', 'os', 'get', 'caption']).decode().strip().split('\n')[1]
+
+        return system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_info, disk_info_extended, network_info, mac_wifi_info, bios_info, adapter_info, os_info
+    except Exception as e:
+        print("Error al obtener la información del sistema:", e)
+
+# Función para obtener la dirección MAC de la tarjeta de red
+def get_mac_address():
+    try:
+        for interface, addresses in psutil.net_if_addrs().items():
+            for address in addresses:
+                if address.family == psutil.AF_LINK:
+                    return address.address
+    except Exception as e:
+        print("Error al obtener la dirección MAC:", e)
+
+
+# Función para generar el script SQL
+def generate_sql_script(codigo_equipo, nombre_sala, numero_equipo, campus, system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_info, disk_info_extended, network_info, mac_wifi_info, bios_info, adapter_info, os_info):
+    try:
+        # Llenar las variables con datos obtenidos
+        nombre_equipo = socket.gethostname()
+
+        # Generar el script SQL con los datos
+        sql_script = f"INSERT INTO equipos (codigo_equipo, nombre_sala, nombre_equipo, numero_equipo, campus, memoria_ram, cpu_modelo_serial, disco_duro_modelo_serial, mac_ethernet_serial, mac_wifi_serial, bios_info, adapter_info, os_info, cpu_speed_info, memory_info_extended, disk_info_extended) VALUES ('{codigo_equipo}', '{nombre_sala}', '{nombre_equipo}', '{numero_equipo}', '{campus}', '{memory_info}', '{cpu_info}', '{disk_info}', '{network_info}', '{mac_wifi_info}', '{bios_info}', '{adapter_info}', '{os_info}', '{cpu_speed_info}', '{', '.join(memory_info_extended)}', '{', '.join(disk_info_extended)}');"
+
+        return sql_script
+    except Exception as e:
+        print("Error al generar el script SQL:", e)
+
+# Crear ventana para solicitar la entrada del usuario
+def solicitar_entrada():
+    try:
+        root = tk.Tk()
+        root.withdraw()  # Ocultar la ventana principal
+
+        codigo_equipo = simpledialog.askstring("Código de Equipo", "Ingrese el código del equipo:")
+        nombre_sala = simpledialog.askstring("Nombre de Sala", "Ingrese el nombre de la sala o oficina:")
+        numero_equipo = simpledialog.askstring("Número de Equipo", "Ingrese el número del equipo:")
+        campus = simpledialog.askstring("Campus", "Ingrese el nombre del campus:")
+
+        return codigo_equipo, nombre_sala, numero_equipo, campus
+    except Exception as e:
+        print("Error al solicitar la entrada:", e)
+
+# Obtener entrada del usuario
+codigo_equipo, nombre_sala, numero_equipo, campus = solicitar_entrada()
+
+# Obtener información del sistema
+system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_info, disk_info_extended, network_info, mac_wifi_info, bios_info, adapter_info, os_info = get_system_info()
+
+# Generar script SQL
+sql_script = generate_sql_script(codigo_equipo, nombre_sala, numero_equipo, campus, system_info, cpu_info, cpu_speed_info, memory_info, memory_info_extended, disk_info, disk_info_extended, network_info, mac_wifi_info, bios_info, adapter_info, os_info)
+
+# Guardar el script SQL en un archivo
+if sql_script:
+    try:
+        with open('hardware_info.sql', 'w') as file:
+            file.write(sql_script)
+        print("Script SQL generado exitosamente.")
+    except Exception as e:
+        print("Error al guardar el script SQL en un archivo:", e)

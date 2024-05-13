@@ -170,7 +170,6 @@ $query = mysqli_query($conn, $sql);
     </div>
 </div>
 
-
 <!-- Modal para consultar equipo por nombre -->
 <div class="modal fade" id="consultarEquipoNombre" tabindex="-1" role="dialog" aria-labelledby="consultarEquipoNombreLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -200,7 +199,6 @@ $query = mysqli_query($conn, $sql);
         window.location.href = "../hoja de vida cpu/controller/consultarEquipoNombre.php?NombreEquipo=" + nombreEquipo;
     }
 </script>
-
 
  <!-- Modal para modificar producto -->
  <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -508,8 +506,6 @@ $query = mysqli_query($conn, $sql);
         </tbody>
     </table>
 </div>
-
-
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
