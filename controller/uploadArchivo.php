@@ -43,7 +43,6 @@
 <body>
     <header>
         <img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
-        <!-- Contenido adicional del encabezado si es necesario -->
     </header>
     <br>
 
@@ -73,7 +72,6 @@
         }
     }
 
-    // Inicializar un array para almacenar los mensajes de confirmación
     $confirmationMessages = array();
 
     // Iterar sobre cada archivo para procesarlo
@@ -117,23 +115,18 @@
         $sql = "INSERT INTO archivos_sql (nombre_archivo, ruta_archivo) VALUES ('$nombre_archivo', '$ruta_archivo')";
 
         if ($conn->query($sql) === TRUE) {
-            // Agregar mensaje de confirmación al array
             $confirmationMessages[] = "El archivo $nombre_archivo se ha subido y registrado correctamente en la base de datos.";
         } else {
-            // Agregar mensaje de error al array
             $confirmationMessages[] = "Error al registrar el archivo $nombre_archivo en la base de datos: " . $conn->error;
         }
 
-        // Cerrar la conexión
         $conn->close();
     }
 
-    // Mostrar mensajes de confirmación en una ventana emergente usando JavaScript
     echo "<script>";
     foreach ($confirmationMessages as $message) {
         echo "alert('$message');";
     }
-    // Redireccionar de vuelta a la página principal
     echo "window.location.href = '../administrador.php';";
     echo "</script>";
     ?>

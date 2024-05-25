@@ -5,7 +5,6 @@ $conexion = new Conexion();
 $conn = $conexion->conectar();
 $sql = "SELECT * FROM equipos";
 $query = mysqli_query($conn, $sql);
-
 ?>
 
 <!DOCTYPE html>
@@ -524,4 +523,5 @@ $query = mysqli_query($conn, $sql);
 </script>
 
 </body>
+
 </html>
