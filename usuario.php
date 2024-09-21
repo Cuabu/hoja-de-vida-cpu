@@ -19,19 +19,19 @@ $query = mysqli_query($conn, $sql);
 </head>
 
 <style>
-    header {
-        text-align: center;
-        /* Centrar contenido dentro del header */
-    }
+header {
+    text-align: center;
+    /* Centrar contenido dentro del header */
+}
 
-    header img {
-        display: inline-block;
-        /* Alinear la imagen como bloque en línea */
+header img {
+    display: inline-block;
+    /* Alinear la imagen como bloque en línea */
 
 
-        padding-top: 10px;
-        margin-top: 20px;
-    }
+    padding-top: 10px;
+    margin-top: 20px;
+}
 </style>
 
 </style>
@@ -83,7 +83,6 @@ $query = mysqli_query($conn, $sql);
         </div>
     </div>
 
-
     <!-- Modal para agregar dispositivo -->
     <div class="modal fade" id="agregarDispositivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -117,39 +116,6 @@ $query = mysqli_query($conn, $sql);
                         </div>
 
                         <button type="submit" class="btn btn-primary">Agregar Dispositivo</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal para seleccionar sala -->
-    <div class="modal fade" id="seleccionarSalaModal" tabindex="-1" role="dialog"
-        aria-labelledby="seleccionarSalaModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="seleccionarSalaModalLabel">Seleccionar Sala</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="salaForm">
-                        <div class="form-group">
-                            <label for="salaSelect">Seleccione la sala:</label>
-                            <select class="form-control" id="salaSelect" name="sala">
-                                <option value="./salas/sala_a.php">Sala A</option>
-                                <option value="./salas/sala_b.php">Sala B</option>
-                                <option value="./salas/sala_c.php">Sala C</option>
-                                <option value="./salas/sala_d.php">Sala D</option>
-                                <option value="./salas/sala_e.php">Sala E</option>
-                                <option value="./salas/sala_f.php">Sala F</option>
-                                <option value="./salas/sala_g.php">Sala G</option>
-                                <option value="./salas/sala_h.php">Sala H</option>
-                            </select>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="redirigirSala()">Ir a la sala</button>
                     </form>
                 </div>
             </div>
@@ -292,12 +258,12 @@ $query = mysqli_query($conn, $sql);
             </thead>
             <tbody>
                 <?php while ($row = mysqli_fetch_array($query)): ?>
-                    <tr>
-                        <td><?= $row['Id'] ?></td>
-                        <td><?= $row['NombreEquipo'] ?></td>
-                        <td><?= $row['DescripcionProducto'] ?></td>
+                <tr>
+                    <td><?= $row['Id'] ?></td>
+                    <td><?= $row['NombreEquipo'] ?></td>
+                    <td><?= $row['DescripcionProducto'] ?></td>
 
-                    </tr>
+                </tr>
                 <?php endwhile; ?>
             </tbody>
         </table>
@@ -308,13 +274,13 @@ $query = mysqli_query($conn, $sql);
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        function redirigirSala() {
-            var form = document.getElementById('salaForm');
-            var selectedOption = form.elements['sala'].value;
-            if (selectedOption) {
-                window.location.href = selectedOption;
-            }
+    function redirigirSala() {
+        var form = document.getElementById('salaForm');
+        var selectedOption = form.elements['sala'].value;
+        if (selectedOption) {
+            window.location.href = selectedOption;
         }
+    }
     </script>
 
 </body>
