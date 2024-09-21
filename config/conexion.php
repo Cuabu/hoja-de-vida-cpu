@@ -1,9 +1,11 @@
 <?php
 
-class Conexion {
+class Conexion
+{
     public $conexion;
 
-    public function __construct() {
+    public function __construct()
+    {
         $host = "localhost";
         $user = "root";
         $pass = "";
@@ -18,12 +20,13 @@ class Conexion {
         }
     }
 
-    public function conectar() {
+    public function conectar()
+    {
         return $this->conexion;
     }
 
-    public function desconectar() {
+    public function desconectar()
+    {
         $this->conexion->close();
     }
 }
-?>

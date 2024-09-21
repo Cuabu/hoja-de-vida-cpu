@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="../stilos/consultas.css" rel="stylesheet">
 </head>
+
 <body>
     <header>
         <img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
@@ -15,7 +17,8 @@
 
     <div class='container mt-3'>
         <a href='javascript:history.back()' class='btn btn-secondary mr-2'>Volver</a>
-        <a href='../controller/generarDocNombre.php?NombreEquipo=<?php echo $nombreEquipo; ?>' class='btn btn-primary'>Descargar Excel</a>
+        <a href='../controller/generarDocNombre.php?NombreEquipo=<?php echo $nombreEquipo; ?>'
+            class='btn btn-primary'>Descargar Excel</a>
     </div>
 
     <?php
@@ -85,7 +88,7 @@
     function consultarOtroScript() {
         // Obtener el nombre del equipo desde el formulario
         var nombreEquipo = "<?php echo $nombreEquipo; ?>";
-        
+
         // Redirigir al script deseado
         window.location.href = "../controller/generarDocEquipos.php?NombreEquipo=" + nombreEquipo;
     }
@@ -122,4 +125,5 @@
     </footer>
 
 </body>
+
 </html>

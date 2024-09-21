@@ -1,6 +1,5 @@
 CREATE DATABASE IF NOT EXISTS hvcpu;
 USE hvcpu;
-
 CREATE TABLE auto_equipos (
     codigo_equipo VARCHAR(50) PRIMARY KEY,
     nombre_sala VARCHAR(50),
@@ -19,14 +18,12 @@ CREATE TABLE auto_equipos (
     memory_info_extended VARCHAR(500),
     disk_info_extended VARCHAR(500)
 );
-
 CREATE TABLE archivos_sql (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_archivo VARCHAR(255) NOT NULL,
     ruta_archivo VARCHAR(255) NOT NULL,
     fecha_subida TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TABLE historial (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigo_equipo VARCHAR(50),
@@ -34,19 +31,16 @@ CREATE TABLE historial (
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (codigo_equipo) REFERENCES auto_equipos(codigo_equipo)
 );
-
 CREATE TABLE administrador (
     id INT AUTO_INCREMENT PRIMARY KEY,
     NombreAdmin VARCHAR(20) DEFAULT NULL,
     PasswdAdmin VARCHAR(20) DEFAULT NULL
 );
-
 CREATE TABLE alertas (
     id INT AUTO_INCREMENT PRIMARY KEY,
     mensaje TEXT,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TABLE reporte (
     id INT AUTO_INCREMENT PRIMARY KEY,
     modelo VARCHAR(50),
@@ -55,25 +49,21 @@ CREATE TABLE reporte (
     codigo_equipo VARCHAR(50),
     FOREIGN KEY (codigo_equipo) REFERENCES auto_equipos(codigo_equipo)
 );
-
 CREATE TABLE ports (
     id INT AUTO_INCREMENT PRIMARY KEY,
     codigo_equipo VARCHAR(50),
     puerto INT,
     FOREIGN KEY (codigo_equipo) REFERENCES auto_equipos(codigo_equipo)
 );
-
 CREATE TABLE cambios_hardware (
     id INT AUTO_INCREMENT PRIMARY KEY,
     componente VARCHAR(255) NOT NULL,
     cambio TEXT NOT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
-
 -- Crear usuario administrador con todos los permisos
-CREATE USER 'administrador'@'localhost' IDENTIFIED BY 'contraseña';
-GRANT ALL PRIVILEGES ON hvcpu.* TO 'administrador'@'localhost';
-
+CREATE USER 'administrador' @'localhost' IDENTIFIED BY 'contraseña';
+GRANT ALL PRIVILEGES ON hvcpu.* TO 'administrador' @'localhost';
 -- Crear usuario usuario con permisos de solo lectura
-CREATE USER 'usuario'@'localhost' IDENTIFIED BY 'contraseña';
-GRANT SELECT ON hvcpu.* TO 'usuario'@'localhost';
+CREATE USER 'usuario' @'localhost' IDENTIFIED BY 'contraseña';
+GRANT SELECT ON hvcpu.* TO 'usuario' @'localhost';

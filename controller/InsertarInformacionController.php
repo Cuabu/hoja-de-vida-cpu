@@ -2,10 +2,10 @@
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["codigo_equipo"]) && isset($_POST["descripcion"]) && !empty($_POST["descripcion"])) {
 
-    $servername = "localhost"; 
-    $username = "root"; 
-    $password = ""; 
-    $database = "hvcpu"; 
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $database = "hvcpu";
 
     $codigo_equipo = $_POST['codigo_equipo'];
     $descripcion = $_POST['descripcion'];
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["codigo_equipo"]) && is
 
     $stmt = $conn->prepare($sql);
 
-    $stmt->bind_param("ss", $codigo_equipo, $descripcion); 
+    $stmt->bind_param("ss", $codigo_equipo, $descripcion);
 
     if ($stmt->execute()) {
         echo "Datos insertados correctamente en historial.";
@@ -36,4 +36,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["codigo_equipo"]) && is
 } else {
     echo "Error: No se proporcionó la descripción o está vacía.";
 }
-?>

@@ -1,5 +1,6 @@
 <?php
-class Conexion {
+class Conexion
+{
     private $servername = "localhost";
     private $username = "root";
     private $password = "";
@@ -7,7 +8,8 @@ class Conexion {
     private $conn;
 
     // Constructor
-    public function __construct() {
+    public function __construct()
+    {
         // Crear conexión
         $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
 
@@ -18,13 +20,14 @@ class Conexion {
     }
 
     // Método para obtener la conexión
-    public function getConexion() {
+    public function getConexion()
+    {
         return $this->conn;
     }
 
     // Método para cerrar la conexión
-    public function cerrarConexion() {
+    public function cerrarConexion()
+    {
         $this->conn->close();
     }
 }
-?>

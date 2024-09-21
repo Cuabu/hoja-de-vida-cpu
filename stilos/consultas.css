@@ -18,7 +18,7 @@ header img {
 .table {
     width: 100%;
     margin-bottom: 1rem;
-    color: #212529;
+    color: #ffffff; /* Color de texto predeterminado para la tabla */
 }
 
 .table th,
@@ -27,20 +27,21 @@ header img {
     vertical-align: top;
     border-top: 1px solid #dee2e6;
     text-align: center;
+    color: #212529; /* Aseguramos que el color del texto en celdas sea legible */
 }
 
 .table thead th {
     vertical-align: bottom;
     border-bottom: 2px solid #dee2e6;
-    color: white;
-    background-color: #8c2525;
+    color: #ffffff; /* Color de texto en el encabezado */
+    background-color: #8c2525; /* Color de fondo del encabezado */
 }
 
 /* Estilos para los botones */
 .btn {
     display: inline-block;
     font-weight: 400;
-    color: #212529;
+    color: #212529; /* Color de texto para botones */
     text-align: center;
     vertical-align: middle;
     cursor: pointer;
@@ -53,7 +54,7 @@ header img {
 }
 
 .btn-secondary {
-    color: #fff;
+    color: #fff; /* Color del texto en botón secundario */
     background-color: #6c757d;
     border-color: #6c757d;
 }
@@ -65,7 +66,7 @@ header img {
 }
 
 .btn-primary {
-    color: #fff;
+    color: #fff; /* Color del texto en botón primario */
     background-color: #007bff;
     border-color: #007bff;
 }
@@ -77,7 +78,7 @@ header img {
 }
 
 .btn-success {
-    color: #fff;
+    color: #fff; /* Color del texto en botón de éxito */
     background-color: #28a745;
     border-color: #28a745;
 }
@@ -91,14 +92,14 @@ header img {
 /* Estilos para el footer */
 .footer_pagina {
     background-color: #b32d24;
-    color: #ffffff;
+    color: #ffffff; /* Color del texto en el footer */
     padding: 14px 0;
     font-size: 14px;
     text-align: left;
 }
 
 .footer_pagina h5 {
-    color: #ffffff;
+    color: #ffffff; /* Color del título en el footer */
     font-size: 18px;
     margin-bottom: 15px;
 }
@@ -114,13 +115,13 @@ header img {
 }
 
 .footer_pagina ul li a {
-    color: #ffffff;
+    color: #ffffff; /* Color del texto de los enlaces en el footer */
     text-decoration: none;
     transition: color 0.3s;
 }
 
 .footer_pagina ul li a:hover {
-    color: #cccccc;
+    color: #cccccc; /* Color de texto al pasar el ratón sobre los enlaces */
 }
 
 .footer_pagina hr {
@@ -132,27 +133,15 @@ header img {
 .footer_pagina .text-center {
     font-size: 13px;
 }
-thead {
-    color: #dee2e6;
-}
 
-table thead th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-      border-bottom-width: 2px;
-    background-color: #8c2525;
-  }
-
-  .modal-header {
-    display: -ms-flexbox;
+/* Estilos para el modal */
+.modal-header {
     display: flex;
-    -ms-flex-align: start;
     align-items: flex-start;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: 1rem 1rem;
+    padding: 1rem;
     border-bottom: 1px solid #dee2e6;
     border-top-left-radius: calc(.3rem - 1px);
     border-top-right-radius: calc(.3rem - 1px);
-    background-color: #b32d24;
-  }
+    background-color: #b32d24; /* Color de fondo del modal */
+}

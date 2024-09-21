@@ -3,7 +3,7 @@
 // Configuración de la conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = ""; 
+$password = "";
 $database = "hvcpu";
 
 // Crear conexión
@@ -25,11 +25,14 @@ header("Content-Disposition: attachment; filename=\"$filenameCambiosHardware\"")
 
 // Definir encabezados de la tabla
 $headersCambiosHardware = [
-    "Componente", "Cambio", "Fecha"
+    "Componente",
+    "Cambio",
+    "Fecha"
 ];
 
 // Función para generar la tabla en HTML
-function generateTable($result, $headers) {
+function generateTable($result, $headers)
+{
     if ($result->num_rows > 0) {
         echo "<table style='border-collapse: collapse; width: 100%;'>";
         echo "<thead><tr style='background-color: #f2f2f2;'>";
@@ -38,7 +41,7 @@ function generateTable($result, $headers) {
         foreach ($headers as $header) {
             echo "<th style='border: 1px solid #dddddd; padding: 8px;'>$header</th>";
         }
-        
+
         echo "</tr></thead><tbody>";
 
         // Mostrar datos
@@ -61,5 +64,3 @@ generateTable($resultCambiosHardware, $headersCambiosHardware);
 
 // Cerrar conexión
 $conn->close();
-
-?>

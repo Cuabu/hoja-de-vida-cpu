@@ -4,7 +4,7 @@ if (isset($_GET['equipo']) && !empty($_GET['equipo'])) {
 
     $servername = "localhost";
     $username = "root";
-    $password = ""; 
+    $password = "";
     $database = "hvcpu";
 
     $conn = new mysqli($servername, $username, $password, $database);
@@ -43,4 +43,3 @@ if (isset($_GET['equipo']) && !empty($_GET['equipo'])) {
 } else {
     echo "Parámetro 'equipo' no especificado en la URL.";
 }
-?>

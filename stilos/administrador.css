@@ -5,9 +5,9 @@ header {
 }
 
 header img {
-        display: inline-block; /* Alinear la imagen como bloque en línea */
-        padding-top: 20px;
-        background-color: #ffffff; /* Color de fondo */
+    display: inline-block; /* Alinear la imagen como bloque en línea */
+    padding-top: 20px;
+    background-color: #ffffff; /* Color de fondo */
 }
 
 /* Estilos para el contenido principal */
@@ -21,7 +21,7 @@ header img {
     color: #ffffff; /* Color del texto */
     padding: 14px 0; /* Espaciado interno */
     font-size: 14px; /* Tamaño de fuente */
-    text-align: left;/* Ubicacion de las letras del footer */
+    text-align: left; /* Ubicación del texto del footer */
 }
 
 .footer_pagina h5 {
@@ -47,11 +47,11 @@ header img {
 }
 
 .footer_pagina ul li a:hover {
-    color: #cccccc; /* Color del texto al pasar el ratón sobre los enlaces */
+    color: #db2f2f; /* Color del texto al pasar el ratón sobre los enlaces */
 }
 
 .footer_pagina hr {
-    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Línea divisoria con color y opacidad */
+    border-top: 1px solid rgb(255, 255, 255); /* Línea divisoria con color y opacidad */
     margin-top: 15px; /* Espaciado superior de la línea divisoria */
     margin-bottom: 14px; /* Espaciado inferior de la línea divisoria */
 }
@@ -60,31 +60,34 @@ header img {
     font-size: 13px; /* Tamaño de fuente del texto central */
 }
 
-.btn btn-success btn-sm {
+.btn-success.btn-sm {
     margin-right: auto;
 }
 
+/* Estilos para la tabla */
 thead {
-    color: #dee2e6;
+    color: white;
 }
 
-table thead th {
+.table th, .table td {
     vertical-align: bottom;
-    border-bottom: 2px solid #dee2e6;
-      border-bottom-width: 2px;
-    background-color: #8c2525;
-  }
+    border-bottom: 2px solid #ffffff;
+    background-color: #db2f2f; /* Color de fondo del encabezado */
+    color: #ffffff; /* Color del texto del encabezado */
+}
 
-  .modal-header {
-    display: -ms-flexbox;
+/* Estilos para el modal */
+.modal-header {
     display: flex;
-    -ms-flex-align: start;
     align-items: flex-start;
-    -ms-flex-pack: justify;
     justify-content: space-between;
-    padding: 1rem 1rem;
-    border-bottom: 1px solid #dee2e6;
+    padding: 1rem;
+    border-bottom: 1px solid #ffffff;
     border-top-left-radius: calc(.3rem - 1px);
     border-top-right-radius: calc(.3rem - 1px);
-    background-color: #b32d24;
-  }
+    background-color: #db2f2f;
+}
+
+h5 {
+    color:white;
+}

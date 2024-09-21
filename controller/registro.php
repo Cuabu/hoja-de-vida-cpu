@@ -1,7 +1,8 @@
 <?php
 include('../config/conexion.php');
 
-function validarDatos($dato) {
+function validarDatos($dato)
+{
     $dato = trim($dato);
     $dato = htmlspecialchars($dato);
     return $dato;
@@ -30,9 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../index.php");
             exit();
         }
-
     } else {
         echo "<script>alert('Por favor, complete todos los campos');</script>";
     }
 }
-?>

@@ -5,7 +5,8 @@ include('../config/conexion.php');
 
 
 // Función para limpiar y validar los datos ingresados
-function validarDatos($dato) {
+function validarDatos($dato)
+{
     // Eliminar espacios en blanco al inicio y al final
     $dato = trim($dato);
     // Escapar caracteres especiales para evitar inyección SQL
@@ -50,11 +51,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Si no se encuentra un usuario con las credenciales proporcionadas, mostrar un mensaje de error
             echo "<script>alert('Usuario no encontrado');</script>";
         }
-
- 
     } else {
         // Los campos están vacíos
         echo "<script>alert('Por favor, complete todos los campos');</script>";
     }
 }
-?>

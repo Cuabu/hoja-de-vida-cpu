@@ -1,43 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Computadores</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        header {
-            text-align: center; 
-        }
-        header img {
-            display: inline-block; 
-            padding-top: 10px;
-            margin-top: 10px;
-        }
-        .button-container {
-            border: 1.5px solid black; 
-            padding: 20px;
-            margin-bottom: 10px; 
-            background-color: #d68681; 
-            margin: 0 auto; 
-            overflow: hidden; 
-            margin-left: 20px; 
-            margin-right: 20px; 
-        }
+    header {
+        text-align: center;
+    }
 
-        .button-container button {
-            margin-bottom: 7px; 
-        }
+    header img {
+        display: inline-block;
+        padding-top: 10px;
+        margin-top: 10px;
+    }
 
-        .acciones-column {
-            width: 250px; 
-        }
+    .button-container {
+        border: 1.5px solid black;
+        padding: 20px;
+        margin-bottom: 10px;
+        background-color: #d68681;
+        margin: 0 auto;
+        overflow: hidden;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 
-        .acciones-column .btn {
-            margin-bottom: 5px;
-        }
+    .button-container button {
+        margin-bottom: 7px;
+    }
+
+    .acciones-column {
+        width: 250px;
+    }
+
+    .acciones-column .btn {
+        margin-bottom: 5px;
+    }
     </style>
 </head>
+
 <body>
     <header>
         <img src="../img/custom-logo.png" title="Unilibre - Planificación" alt="Unilibre - Planificación">
@@ -51,9 +55,9 @@
     </div>
 
     <script>
-        function goBack() {
-            window.history.back();
-        }
+    function goBack() {
+        window.history.back();
+    }
     </script>
 
     <?php
@@ -118,4 +122,5 @@
     echo "</script>";
     ?>
 </body>
+
 </html>

@@ -79,4 +79,3 @@ if (isset($_GET['NombreEquipo']) && !empty($_GET['NombreEquipo'])) {
 } else {
     echo "Nombre del equipo no especificado.";
 }
-?>
