@@ -37,6 +37,7 @@
                             <option value="#consultarEquipoNombre">Consultar equipo por nombre</option>
                             <option value="#consultarEstadoEquipo">Consultar estado de equipos</option>
                             <option value="#generarReporteHardware">Generar reporte de hardware en Excel</option>
+                            <option value="#actualizacionRepositorio">Actualizar</option>
                         </select>
                     </div>
                 </div>
@@ -333,7 +334,8 @@
                                                 error: function(xhr, status, error) {
                                                     console.error(error);
                                                     alert(
-                                                        'Error al cargar el estado del equipo.');
+                                                        'Error al cargar el estado del equipo.'
+                                                    );
                                                 }
                                             });
                                         });
@@ -427,6 +429,33 @@
                                 <form action="./controller/cambios_hardware.php" method="GET">
                                     <button type="submit" class="btn btn-primary">Descargar Reporte</button>
                                 </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal para actualizar el repositorio -->
+                <div class="modal fade" id="actualizacionRepositorio" tabindex="-1" role="dialog"
+                    aria-labelledby="actualizacionRepositorio" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="subirRegistrosLabel">Actualizar Repositorio</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Para actualizar el proyecto, haz clic en el botón de abajo.</p>
+                                <a href="./controller/run_update_script.php" class="btn btn-warning"
+                                    target="_blank">Actualizar
+                                    Proyecto</a>
+                                <p class="mt-3">Repositorio en GitHub: <a
+                                        href="https://github.com/Cuabu/hoja-de-vida-cpu.git"
+                                        target="_blank">hoja-de-vida-cpu</a></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                             </div>
                         </div>
                     </div>

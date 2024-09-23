@@ -1,0 +1,147 @@
+/* Estilos para el header */
+header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+header img {
+    display: inline-block;
+    padding-top: 20px;
+    background-color: #ffffff;
+}
+
+/* Estilos para la tabla de equipos */
+.container {
+    margin-top: 20px;
+}
+
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #ffffff; /* Color de texto predeterminado para la tabla */
+}
+
+.table th,
+.table td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    color: #212529; /* Aseguramos que el color del texto en celdas sea legible */
+}
+
+.table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    color: #ffffff; /* Color de texto en el encabezado */
+    background-color: #8c2525; /* Color de fondo del encabezado */
+}
+
+/* Estilos para los botones */
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #212529; /* Color de texto para botones */
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-secondary {
+    color: #fff; /* Color del texto en botón secundario */
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    color: #fff;
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-primary {
+    color: #fff; /* Color del texto en botón primario */
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-success {
+    color: #fff; /* Color del texto en botón de éxito */
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+/* Estilos para el footer */
+.footer_pagina {
+    background-color: #b32d24;
+    color: #ffffff; /* Color del texto en el footer */
+    padding: 14px 0;
+    font-size: 14px;
+    text-align: left;
+}
+
+.footer_pagina h5 {
+    color: #ffffff; /* Color del título en el footer */
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.footer_pagina p,
+.footer_pagina ul {
+    margin-bottom: 10px;
+}
+
+.footer_pagina ul li {
+    list-style: none;
+    margin-bottom: 5px;
+}
+
+.footer_pagina ul li a {
+    color: #ffffff; /* Color del texto de los enlaces en el footer */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer_pagina ul li a:hover {
+    color: #cccccc; /* Color de texto al pasar el ratón sobre los enlaces */
+}
+
+.footer_pagina hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+    margin-bottom: 14px;
+}
+
+.footer_pagina .text-center {
+    font-size: 13px;
+}
+
+/* Estilos para el modal */
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+    background-color: #b32d24; /* Color de fondo del modal */
+}

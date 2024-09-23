@@ -1,0 +1,93 @@
+/* Estilos para el header */
+header {
+    text-align: center;
+    margin-bottom: 15px; /* Reducido a 15px */
+}
+
+header img {
+    display: inline-block; /* Alinear la imagen como bloque en línea */
+    padding-top: 20px;
+    background-color: #ffffff; /* Color de fondo */
+}
+
+/* Estilos para el contenido principal */
+.container {
+    margin-top: 20px;
+}
+
+/* Estilos para el footer */
+.footer_pagina {
+    background-color: #b32d24; /* Color de fondo */
+    color: #ffffff; /* Color del texto */
+    padding: 14px 0; /* Espaciado interno */
+    font-size: 14px; /* Tamaño de fuente */
+    text-align: left; /* Ubicación del texto del footer */
+}
+
+.footer_pagina h5 {
+    color: #ffffff; /* Color del título */
+    font-size: 18px; /* Tamaño de fuente del título */
+    margin-bottom: 15px; /* Espaciado inferior del título */
+}
+
+.footer_pagina p,
+.footer_pagina ul {
+    margin-bottom: 10px; /* Espaciado inferior para párrafos y elementos de la lista */
+}
+
+.footer_pagina ul li {
+    list-style: none; /* Quitar viñetas de la lista */
+    margin-bottom: 5px; /* Espaciado inferior entre elementos de la lista */
+}
+
+.footer_pagina ul li a {
+    color: #ffffff; /* Color del texto de los enlaces */
+    text-decoration: none; /* Quitar subrayado de los enlaces */
+    transition: color 0.3s; /* Transición suave del color del texto */
+}
+
+.footer_pagina ul li a:hover {
+    color: #db2f2f; /* Color del texto al pasar el ratón sobre los enlaces */
+}
+
+.footer_pagina hr {
+    border-top: 1px solid rgb(255, 255, 255); /* Línea divisoria con color y opacidad */
+    margin-top: 15px; /* Espaciado superior de la línea divisoria */
+    margin-bottom: 14px; /* Espaciado inferior de la línea divisoria */
+}
+
+.footer_pagina .text-center {
+    font-size: 13px; /* Tamaño de fuente del texto central */
+}
+
+.btn-success.btn-sm {
+    margin-right: auto;
+}
+
+/* Estilos para la tabla */
+thead {
+    color: white;
+}
+
+.table th, .table td {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ffffff;
+    background-color: #db2f2f; /* Color de fondo del encabezado */
+    color: #ffffff; /* Color del texto del encabezado */
+}
+
+/* Estilos para el modal */
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #ffffff;
+    border-top-left-radius: calc(.3rem - 1px);
+    border-top-right-radius: calc(.3rem - 1px);
+    background-color: #db2f2f;
+}
+
+h5 {
+    color:white;
+}

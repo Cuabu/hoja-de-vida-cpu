@@ -55,15 +55,18 @@ CREATE TABLE ports (
     puerto INT,
     FOREIGN KEY (codigo_equipo) REFERENCES auto_equipos(codigo_equipo)
 );
+-- Modificar tabla cambios_hardware para incluir una referencia a auto_equipos
 CREATE TABLE cambios_hardware (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    codigo_equipo VARCHAR(50),
     componente VARCHAR(255) NOT NULL,
     cambio TEXT NOT NULL,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (codigo_equipo) REFERENCES auto_equipos(codigo_equipo)
 );
 -- Crear usuario administrador con todos los permisos
 CREATE USER 'administrador' @'localhost' IDENTIFIED BY 'contraseña';
 GRANT ALL PRIVILEGES ON hvcpu.* TO 'administrador' @'localhost';
--- Crear usuario usuario con permisos de solo lectura
+-- Crear usuario con permisos de solo lectura
 CREATE USER 'usuario' @'localhost' IDENTIFIED BY 'contraseña';
 GRANT SELECT ON hvcpu.* TO 'usuario' @'localhost';

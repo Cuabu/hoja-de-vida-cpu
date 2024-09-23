@@ -14,8 +14,13 @@ if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
 }
 
-// Consulta para obtener los cambios de hardware
-$sqlCambiosHardware = "SELECT componente, cambio, fecha FROM cambios_hardware";
+// Consulta para obtener los cambios de hardware y detalles del equipo
+$sqlCambiosHardware = "
+    SELECT ae.nombre_equipo, ae.nombre_sala, ae.campus, ae.memoria_ram, ae.cpu_modelo_serial,
+           ae.disco_duro_modelo_serial, ch.componente, ch.cambio, ch.fecha
+    FROM cambios_hardware ch
+    JOIN auto_equipos ae ON ch.codigo_equipo = ae.codigo_equipo
+";
 $resultCambiosHardware = $conn->query($sqlCambiosHardware);
 
 // Nombre del archivo para la descarga
@@ -25,9 +30,15 @@ header("Content-Disposition: attachment; filename=\"$filenameCambiosHardware\"")
 
 // Definir encabezados de la tabla
 $headersCambiosHardware = [
+    "Nombre del Equipo",
+    "Sala",
+    "Campus",
+    "Memoria RAM",
+    "CPU Modelo y Serial",
+    "Disco Duro Modelo y Serial",
     "Componente",
     "Cambio",
-    "Fecha"
+    "Fecha del Cambio"
 ];
 
 // Función para generar la tabla en HTML
